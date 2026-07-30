@@ -34,7 +34,7 @@
                     <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Filter Global</h2>
                     <button onclick="resetFilters()" class="text-xs text-blue-600 hover:text-blue-800 font-medium">Reset Filter</button>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                     <div>
                         <label class="block text-xs font-medium text-slate-500 mb-1">Kecamatan</label>
                         <select id="filterKec" class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
@@ -66,9 +66,22 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-500 mb-1">Pencarian Cepat</label>
-                        <input type="text" id="searchInput" placeholder="Cari nama / SLS..." class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
+                        <label class="block text-xs font-medium text-slate-500 mb-1">Status Panel</label>
+                        <select id="filterPanel" class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
+                            <option value="">Semua Status</option>
+                        </select>
                     </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-500 mb-1">Kategori Progres</label>
+                        <select id="filterProgres" class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
+                            <option value="">Semua Progres</option>
+                            <option value="Rendah">Progres Rendah (&lt; 50%)</option>
+                            <option value="Aman">Progres Aman / Tinggi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <input type="text" id="searchInput" placeholder="Cari nama PPL, PML, atau SLS..." class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
                 </div>
             </section>
 
@@ -111,7 +124,7 @@
             <!-- Table Section -->
             <section class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="p-4 border-b border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3">
-                    <h3 class="text-sm font-semibold text-slate-700">Detail Alokasi Wilayah Pemeriksaan</h3>
+                    <h3 class="text-sm font-semibold text-slate-700">Detail Alokasi Wilayah & Progres Petugas</h3>
                     <span id="tableCount" class="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">Menampilkan 0 data</span>
                 </div>
                 <div class="overflow-x-auto">
@@ -123,6 +136,8 @@
                                 <th class="p-3 cursor-pointer hover:bg-slate-100" onclick="sortTable('namaKec')">Kecamatan ↕</th>
                                 <th class="p-3 cursor-pointer hover:bg-slate-100" onclick="sortTable('namaDesa')">Desa ↕</th>
                                 <th class="p-3 cursor-pointer hover:bg-slate-100" onclick="sortTable('SLS')">SLS ↕</th>
+                                <th class="p-3 cursor-pointer hover:bg-slate-100" onclick="sortTable('statusPanel')">Panel ↕</th>
+                                <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('scoreProgres')">Progres (Sub+Com) ↕</th>
                                 <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('TOTAL_ASSIGNMENT')">Total ↕</th>
                                 <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('DRAFT')">Draft ↕</th>
                                 <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('OPEN')">Open ↕</th>
@@ -143,7 +158,7 @@
 
     <script>
         let rawData = [];
-        let masterRef = { pml: {}, ppl: {}, kecamatan: {}, desa: {} };
+        let masterRef = { pml_by_ppl_email: {}, ppl: {}, kecamatan: {}, desa: {}, panel: {} };
         let processedData = [];
         let filteredData = [];
         let barChartInstance = null;
@@ -166,15 +181,28 @@
 
                 processedData = rawData.map(item => {
                     const emailPpl = item.EMAIL || '';
-                    // Menggabungkan KODE_KECAMATAN dan KODE_DESA sebagai kunci yang unik (contoh: "050012")
                     const kodeUnikDesa = `${item.KECAMATAN}${item.DESA}`;
+                    const kodeUnikPanel = `${item.KECAMATAN}${item.DESA}${item.SLS}`;
                     
+                    const submitted = Number(item.SUBMITTED || 0);
+                    const completed = Number(item.COMPLETED || 0);
+                    const totalAssign = Number(item.TOTAL_ASSIGNMENT || 0);
+                    const progressScore = submitted + completed;
+                    
+                    let kategoriProgres = "Aman";
+                    if (totalAssign > 0 && (progressScore / totalAssign) < 0.5) {
+                        kategoriProgres = "Rendah";
+                    }
+
                     return {
                         ...item,
                         namaPpl: masterRef.ppl[emailPpl] || emailPpl,
                         namaPml: masterRef.pml_by_ppl_email[emailPpl] || "PML Tidak Ditemukan",
                         namaKec: masterRef.kecamatan[item.KECAMATAN] || `Kec. ${item.KECAMATAN}`,
-                        namaDesa: masterRef.desa[kodeUnikDesa] || `Desa ${item.DESA}`
+                        namaDesa: masterRef.desa[kodeUnikDesa] || `Desa ${item.DESA}`,
+                        statusPanel: masterRef.panel[kodeUnikPanel] || "Tidak",
+                        progresKategori: kategoriProgres,
+                        scoreProgres: progressScore
                     };
                 });
 
@@ -195,12 +223,14 @@
             const slsSet = [...new Set(processedData.map(item => item.SLS))].sort();
             const pmlSet = [...new Set(processedData.map(item => item.namaPml))].sort();
             const pplSet = [...new Set(processedData.map(item => item.namaPpl))].sort();
+            const panelSet = [...new Set(processedData.map(item => item.statusPanel))].sort();
 
             populateDropdown('filterKec', kecSet);
             populateDropdown('filterDesa', desaSet);
             populateDropdown('filterSls', slsSet);
             populateDropdown('filterPml', pmlSet);
             populateDropdown('filterPpl', pplSet);
+            populateDropdown('filterPanel', panelSet);
         }
 
         function populateDropdown(elementId, items) {
@@ -218,6 +248,8 @@
         document.getElementById('filterSls').addEventListener('change', applyFilters);
         document.getElementById('filterPml').addEventListener('change', applyFilters);
         document.getElementById('filterPpl').addEventListener('change', applyFilters);
+        document.getElementById('filterPanel').addEventListener('change', applyFilters);
+        document.getElementById('filterProgres').addEventListener('change', applyFilters);
         document.getElementById('searchInput').addEventListener('input', applyFilters);
 
         function applyFilters() {
@@ -226,6 +258,8 @@
             const sls = document.getElementById('filterSls').value;
             const pml = document.getElementById('filterPml').value;
             const ppl = document.getElementById('filterPpl').value;
+            const panel = document.getElementById('filterPanel').value;
+            const progres = document.getElementById('filterProgres').value;
             const search = document.getElementById('searchInput').value.toLowerCase();
 
             filteredData = processedData.filter(item => {
@@ -234,7 +268,9 @@
                        (!sls || item.SLS === sls) &&
                        (!pml || item.namaPml === pml) &&
                        (!ppl || item.namaPpl === ppl) &&
-                       (!search || item.namaPpl.toLowerCase().includes(search) || item.namaPml.toLowerCase().includes(search) || item.SLS.toLowerCase().includes(search) || item.namaDesa.toLowerCase().includes(search));
+                       (!panel || item.statusPanel === panel) &&
+                       (!progres || item.progresKategori === progres) &&
+                       (!search || item.namaPpl.toLowerCase().includes(search) || item.namaPml.toLowerCase().includes(search) || item.SLS.toLowerCase().includes(search));
             });
 
             updateDashboard();
@@ -246,6 +282,8 @@
             document.getElementById('filterSls').value = '';
             document.getElementById('filterPml').value = '';
             document.getElementById('filterPpl').value = '';
+            document.getElementById('filterPanel').value = '';
+            document.getElementById('filterProgres').value = '';
             document.getElementById('searchInput').value = '';
             filteredData = [...processedData];
             updateDashboard();
@@ -280,11 +318,14 @@
             document.getElementById('tableCount').textContent = `Menampilkan ${filteredData.length} data`;
 
             if (filteredData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" class="p-4 text-center text-slate-400">Tidak ada data yang cocok.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="12" class="p-4 text-center text-slate-400">Tidak ada data yang cocok.</td></tr>`;
                 return;
             }
 
             filteredData.forEach(row => {
+                const badgePanelClass = row.statusPanel.includes('Panel') ? 'bg-purple-100 text-purple-700' : 'bg-slate-100 text-slate-600';
+                const progresClass = row.progresKategori === 'Rendah' ? 'text-red-600 font-bold bg-red-50' : 'text-slate-700 font-medium';
+
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50 transition-colors';
                 tr.innerHTML = `
@@ -293,6 +334,8 @@
                     <td class="p-3">${row.namaKec}</td>
                     <td class="p-3">${row.namaDesa}</td>
                     <td class="p-3 font-mono">${row.SLS}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 text-[10px] font-semibold rounded-full ${badgePanelClass}">${row.statusPanel}</span></td>
+                    <td class="p-3 text-right ${progresClass}">${row.scoreProgres} <span class="text-[10px]">(${row.progresKategori})</span></td>
                     <td class="p-3 text-right font-semibold">${row.TOTAL_ASSIGNMENT}</td>
                     <td class="p-3 text-right text-amber-600">${row.DRAFT}</td>
                     <td class="p-3 text-right text-blue-600">${row.OPEN}</td>
