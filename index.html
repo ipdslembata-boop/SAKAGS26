@@ -166,12 +166,15 @@
 
                 processedData = rawData.map(item => {
                     const emailPpl = item.EMAIL || '';
+                    // Menggabungkan KODE_KECAMATAN dan KODE_DESA sebagai kunci yang unik (contoh: "050012")
+                    const kodeUnikDesa = `${item.KECAMATAN}${item.DESA}`;
+                    
                     return {
                         ...item,
                         namaPpl: masterRef.ppl[emailPpl] || emailPpl,
                         namaPml: masterRef.pml_by_ppl_email[emailPpl] || "PML Tidak Ditemukan",
                         namaKec: masterRef.kecamatan[item.KECAMATAN] || `Kec. ${item.KECAMATAN}`,
-                        namaDesa: masterRef.desa[item.DESA] || `Desa ${item.DESA}`
+                        namaDesa: masterRef.desa[kodeUnikDesa] || `Desa ${item.DESA}`
                     };
                 });
 
