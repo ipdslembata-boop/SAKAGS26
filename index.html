@@ -164,13 +164,16 @@
                     masterRef = await resMaster.json();
                 }
 
-                processedData = rawData.map(item => ({
-                    ...item,
-                    namaPml: masterRef.pml[item.PML] || masterRef.pml[item.EMAIL_PML] || item.PML || item.EMAIL_PML || "PML Tidak Ditemukan",
-                    namaPpl: masterRef.ppl[item.EMAIL] || item.EMAIL,
-                    namaKec: masterRef.kecamatan[item.KECAMATAN] || `Kec. ${item.KECAMATAN}`,
-                    namaDesa: masterRef.desa[item.DESA] || `Desa ${item.DESA}`
-                }));
+                processedData = rawData.map(item => {
+                    const emailPpl = item.EMAIL || '';
+                    return {
+                        ...item,
+                        namaPpl: masterRef.ppl[emailPpl] || emailPpl,
+                        namaPml: masterRef.pml_by_ppl_email[emailPpl] || "PML Tidak Ditemukan",
+                        namaKec: masterRef.kecamatan[item.KECAMATAN] || `Kec. ${item.KECAMATAN}`,
+                        namaDesa: masterRef.desa[item.DESA] || `Desa ${item.DESA}`
+                    };
+                });
 
                 filteredData = [...processedData];
                 document.getElementById('lastUpdate').innerText = 'Pembaruan terakhir: ' + new Date().toLocaleTimeString('id-ID');
