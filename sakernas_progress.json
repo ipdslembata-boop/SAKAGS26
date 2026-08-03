@@ -45,7 +45,7 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 8,
-    "COMPLETED": 20
+    "COMPLETED": 24
   },
   {
     "PROVINSI": "53",
@@ -76,8 +76,8 @@
     "TOTAL_ASSIGNMENT": 26,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 1,
-    "COMPLETED": 25
+    "SUBMITTED": 0,
+    "COMPLETED": 26
   },
   {
     "PROVINSI": "53",
@@ -89,10 +89,10 @@
     "EMAIL": "benitatu94@gmail.com",
     "USERNAME": "benitatu94@gmail.com",
     "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 19,
+    "TOTAL_ASSIGNMENT": 20,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 19,
+    "SUBMITTED": 17,
     "COMPLETED": 0
   },
   {
@@ -108,8 +108,8 @@
     "TOTAL_ASSIGNMENT": 77,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 76,
-    "COMPLETED": 1
+    "SUBMITTED": 1,
+    "COMPLETED": 76
   },
   {
     "PROVINSI": "53",
@@ -124,8 +124,8 @@
     "TOTAL_ASSIGNMENT": 30,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 30,
-    "COMPLETED": 0
+    "SUBMITTED": 0,
+    "COMPLETED": 30
   },
   {
     "PROVINSI": "53",
@@ -137,11 +137,11 @@
     "EMAIL": "ilanafreya00@gmail.com",
     "USERNAME": "ilanafreya00@gmail.com",
     "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 37,
+    "TOTAL_ASSIGNMENT": 38,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 37,
-    "COMPLETED": 0
+    "SUBMITTED": 23,
+    "COMPLETED": 15
   },
   {
     "PROVINSI": "53",
@@ -205,7 +205,7 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 0,
-    "COMPLETED": 45
+    "COMPLETED": 46
   },
   {
     "PROVINSI": "53",
@@ -268,8 +268,8 @@
     "TOTAL_ASSIGNMENT": 56,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 17,
-    "COMPLETED": 39
+    "SUBMITTED": 0,
+    "COMPLETED": 56
   },
   {
     "PROVINSI": "53",
@@ -284,8 +284,8 @@
     "TOTAL_ASSIGNMENT": 41,
     "DRAFT": 0,
     "OPEN": 1,
-    "SUBMITTED": 39,
-    "COMPLETED": 0
+    "SUBMITTED": 25,
+    "COMPLETED": 14
   },
   {
     "PROVINSI": "53",
@@ -322,130 +322,66 @@
   {
     "PROVINSI": "53",
     "KABUPATEN": "08",
-    "KECAMATAN": "011",
-    "DESA": "008",
-    "SLS": "0008",
-    "SUBSLS": "00",
-    "EMAIL": "kayusduan@gmail.com",
-    "USERNAME": "kayusduan@gmail.com",
-    "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 32,
-    "DRAFT": 0,
-    "OPEN": 20,
-    "SUBMITTED": 3,
-    "COMPLETED": 9
-  },
-  {
-    "PROVINSI": "53",
-    "KABUPATEN": "08",
-    "KECAMATAN": "050",
-    "DESA": "002",
-    "SLS": "0005",
-    "SUBSLS": "00",
-    "EMAIL": "kayusduan@gmail.com",
-    "USERNAME": "kayusduan@gmail.com",
-    "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 18,
-    "DRAFT": 0,
-    "OPEN": 12,
-    "SUBMITTED": 0,
-    "COMPLETED": 6
-  },
-  {
-    "PROVINSI": "53",
-    "KABUPATEN": "08",
-    "KECAMATAN": "040",
-    "DESA": "011",
-    "SLS": "0005",
-    "SUBSLS": "00",
-    "EMAIL": "boskoleyn892@gmail.com",
-    "USERNAME": "boskoleyn892@gmail.com",
-    "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 18,
-    "DRAFT": 0,
-    "OPEN": 0,
-    "SUBMITTED": 11,
-    "COMPLETED": 7
-  },
-  {
-    "PROVINSI": "53",
-    "KABUPATEN": "08",
-    "KECAMATAN": "040",
+    "KECAMATAN": "070",
     "DESA": "007",
-    "SLS": "0006",
+    "SLS": "4003",
     "SUBSLS": "00",
-    "EMAIL": "boskoleyn892@gmail.com",
-    "USERNAME": "boskoleyn892@gmail.com",
+    "EMAIL": "peubolengedang@gmail.com",
+    "USERNAME": "peubolengedang@gmail.com",
     "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 17,
+    "TOTAL_ASSIGNMENT": 36,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 10,
-    "COMPLETED": 7
+    "SUBMITTED": 0,
+    "COMPLETED": 36
   },
   {
     "PROVINSI": "53",
     "KABUPATEN": "08",
-    "KECAMATAN": "010",
-    "DESA": "017",
-    "SLS": "0004",
+    "KECAMATAN": "070",
+    "DESA": "009",
+    "SLS": "0007",
     "SUBSLS": "00",
-    "EMAIL": "ullyeflensiana@gmail.com",
-    "USERNAME": "ullyeflensiana@gmail.com",
-    "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 37,
-    "DRAFT": 0,
-    "OPEN": 0,
-    "SUBMITTED": 37,
-    "COMPLETED": 0
-  },
-  {
-    "PROVINSI": "53",
-    "KABUPATEN": "08",
-    "KECAMATAN": "010",
-    "DESA": "017",
-    "SLS": "0008",
-    "SUBSLS": "00",
-    "EMAIL": "ullyeflensiana@gmail.com",
-    "USERNAME": "ullyeflensiana@gmail.com",
-    "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 27,
-    "DRAFT": 1,
-    "OPEN": 0,
-    "SUBMITTED": 26,
-    "COMPLETED": 0
-  },
-  {
-    "PROVINSI": "53",
-    "KABUPATEN": "08",
-    "KECAMATAN": "050",
-    "DESA": "008",
-    "SLS": "0002",
-    "SUBSLS": "00",
-    "EMAIL": "noppasinuor@gmail.com",
-    "USERNAME": "noppasinuor@gmail.com",
+    "EMAIL": "peubolengedang@gmail.com",
+    "USERNAME": "peubolengedang@gmail.com",
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 31,
     "DRAFT": 0,
-    "OPEN": 1,
-    "SUBMITTED": 2,
-    "COMPLETED": 28
+    "OPEN": 0,
+    "SUBMITTED": 0,
+    "COMPLETED": 31
   },
   {
     "PROVINSI": "53",
     "KABUPATEN": "08",
     "KECAMATAN": "050",
-    "DESA": "008",
+    "DESA": "010",
     "SLS": "0030",
     "SUBSLS": "00",
-    "EMAIL": "noppasinuor@gmail.com",
-    "USERNAME": "noppasinuor@gmail.com",
+    "EMAIL": "eldadangku02@gmail.com",
+    "USERNAME": "eldadangku02@gmail.com",
     "ROLE": "PPL",
-    "TOTAL_ASSIGNMENT": 30,
+    "TOTAL_ASSIGNMENT": 56,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 4,
-    "COMPLETED": 26
+    "SUBMITTED": 0,
+    "COMPLETED": 56
+  },
+  {
+    "PROVINSI": "53",
+    "KABUPATEN": "08",
+    "KECAMATAN": "050",
+    "DESA": "010",
+    "SLS": "0011",
+    "SUBSLS": "00",
+    "EMAIL": "eldadangku02@gmail.com",
+    "USERNAME": "eldadangku02@gmail.com",
+    "ROLE": "PPL",
+    "TOTAL_ASSIGNMENT": 41,
+    "DRAFT": 0,
+    "OPEN": 1,
+    "SUBMITTED": 25,
+    "COMPLETED": 14
   },
   {
     "PROVINSI": "53",
@@ -478,6 +414,70 @@
     "OPEN": 0,
     "SUBMITTED": 0,
     "COMPLETED": 15
+  },
+  {
+    "PROVINSI": "53",
+    "KABUPATEN": "08",
+    "KECAMATAN": "040",
+    "DESA": "008",
+    "SLS": "0001",
+    "SUBSLS": "00",
+    "EMAIL": "anjelipaliwala@gmail.com",
+    "USERNAME": "anjelipaliwala@gmail.com",
+    "ROLE": "PPL",
+    "TOTAL_ASSIGNMENT": 41,
+    "DRAFT": 0,
+    "OPEN": 0,
+    "SUBMITTED": 9,
+    "COMPLETED": 24
+  },
+  {
+    "PROVINSI": "53",
+    "KABUPATEN": "08",
+    "KECAMATAN": "040",
+    "DESA": "008",
+    "SLS": "0002",
+    "SUBSLS": "00",
+    "EMAIL": "anjelipaliwala@gmail.com",
+    "USERNAME": "anjelipaliwala@gmail.com",
+    "ROLE": "PPL",
+    "TOTAL_ASSIGNMENT": 20,
+    "DRAFT": 0,
+    "OPEN": 0,
+    "SUBMITTED": 11,
+    "COMPLETED": 9
+  },
+  {
+    "PROVINSI": "53",
+    "KABUPATEN": "08",
+    "KECAMATAN": "050",
+    "DESA": "011",
+    "SLS": "0001",
+    "SUBSLS": "00",
+    "EMAIL": "marioaloys@gmail.com",
+    "USERNAME": "marioaloys@gmail.com",
+    "ROLE": "PPL",
+    "TOTAL_ASSIGNMENT": 69,
+    "DRAFT": 0,
+    "OPEN": 0,
+    "SUBMITTED": 0,
+    "COMPLETED": 69
+  },
+  {
+    "PROVINSI": "53",
+    "KABUPATEN": "08",
+    "KECAMATAN": "050",
+    "DESA": "011",
+    "SLS": "0011",
+    "SUBSLS": "00",
+    "EMAIL": "marioaloys@gmail.com",
+    "USERNAME": "marioaloys@gmail.com",
+    "ROLE": "PPL",
+    "TOTAL_ASSIGNMENT": 49,
+    "DRAFT": 0,
+    "OPEN": 0,
+    "SUBMITTED": 0,
+    "COMPLETED": 49
   },
   {
     "PROVINSI": "53",
@@ -588,8 +588,8 @@
     "TOTAL_ASSIGNMENT": 27,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 21,
-    "COMPLETED": 6
+    "SUBMITTED": 0,
+    "COMPLETED": 25
   },
   {
     "PROVINSI": "53",
@@ -604,8 +604,8 @@
     "TOTAL_ASSIGNMENT": 25,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 20,
-    "COMPLETED": 5
+    "SUBMITTED": 0,
+    "COMPLETED": 25
   },
   {
     "PROVINSI": "53",
@@ -668,8 +668,8 @@
     "TOTAL_ASSIGNMENT": 27,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 22,
-    "COMPLETED": 5
+    "SUBMITTED": 14,
+    "COMPLETED": 9
   },
   {
     "PROVINSI": "53",
