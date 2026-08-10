@@ -19,10 +19,8 @@
                     <h1 class="text-2xl font-bold tracking-tight">Dashboard Monitoring Sakernas</h1>
                     <p class="text-xs text-slate-400 mt-0.5">Sumber Data: <span class="font-mono text-cyan-400">sakernas_progress.json</span> & <span class="font-mono text-cyan-400">master_reference.json</span></p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div id="lastUpdate" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300">
-                        Memuat data...
-                    </div>
+                <div id="lastUpdate" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300">
+                    Memuat data...
                 </div>
             </div>
         </header>
@@ -33,7 +31,7 @@
             <!-- Filter Section -->
             <section class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                 <div class="flex justify-between items-center mb-3">
-                    <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Filter Global & Interaktif</h2>
+                    <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Filter Global</h2>
                     <button onclick="resetFilters()" class="text-xs text-blue-600 hover:text-blue-800 font-medium">Reset Filter</button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
@@ -82,16 +80,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="mt-3 flex flex-col sm:flex-row gap-3">
+                <div class="mt-3">
                     <input type="text" id="searchInput" placeholder="Cari nama PPL, PML, atau SLS..." class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
-                    <div class="flex items-center gap-2 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 text-xs text-blue-700 whitespace-nowrap">
-                        <span class="font-semibold">Target Harian:</span> <span id="targetHarianInfo">Memuat...</span>
-                    </div>
                 </div>
             </section>
 
             <!-- KPI Cards -->
-            <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <section class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-slate-500">
                     <p class="text-xs font-medium text-slate-500">Total Assignment</p>
                     <h3 id="kpiTotal" class="text-2xl font-bold text-slate-800 mt-1">0</h3>
@@ -108,23 +103,16 @@
                     <p class="text-xs font-medium text-slate-500">Submitted</p>
                     <h3 id="kpiSubmitted" class="text-2xl font-bold text-indigo-600 mt-1">0</h3>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-500">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-500 col-span-2 sm:col-span-1">
                     <p class="text-xs font-medium text-slate-500">Completed</p>
                     <h3 id="kpiCompleted" class="text-2xl font-bold text-emerald-600 mt-1">0</h3>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-cyan-500 col-span-2 sm:col-span-1">
-                    <p class="text-xs font-medium text-slate-500">Rate Penyelesaian</p>
-                    <h3 id="kpiRate" class="text-2xl font-bold text-cyan-600 mt-1">0%</h3>
-                </div>
             </section>
 
-            <!-- Charts Section 1: Kecamatan & Status -->
+            <!-- Charts Section -->
             <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 lg:col-span-2 flex flex-col justify-between">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-sm font-semibold text-slate-700">Progres Berdasarkan Kecamatan (Volume)</h3>
-                        <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Klik bar untuk filter kecamatan</span>
-                    </div>
+                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Progres Berdasarkan Kecamatan</h3>
                     <div class="relative h-64 sm:h-72"><canvas id="barChart"></canvas></div>
                 </div>
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
@@ -133,33 +121,15 @@
                 </div>
             </section>
 
-            <!-- Charts Section 2: Tren & Persentase Kecamatan -->
+            <!-- Stacked Bar Section per Petugas -->
             <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Simulasi Tren Akumulasi Progres Harian</h3>
-                    <div class="relative h-64 sm:h-72"><canvas id="lineChart"></canvas></div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Persentase Status per PML</h3>
+                    <div class="relative h-[400px] overflow-y-auto"><canvas id="stackedPmlChart"></canvas></div>
                 </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Persentase Capaian (%) Per Kecamatan</h3>
-                    <div class="relative h-64 sm:h-72"><canvas id="percentChart"></canvas></div>
-                </div>
-            </section>
-
-            <!-- Charts Section 3 (NEW): Capaian Petugas PML & PPL -->
-            <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-sm font-semibold text-slate-700">Capaian Kinerja per PML (Pengawas)</h3>
-                        <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Sub + Com vs Total</span>
-                    </div>
-                    <div class="relative h-72 sm:h-80"><canvas id="pmlBarChart"></canvas></div>
-                </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-sm font-semibold text-slate-700">Capaian Kinerja per PPL (Pencacah)</h3>
-                        <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Sub + Com vs Total</span>
-                    </div>
-                    <div class="relative h-72 sm:h-80"><canvas id="pplBarChart"></canvas></div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Persentase Status per PPL</h3>
+                    <div class="relative h-[400px] overflow-y-auto"><canvas id="stackedPplChart"></canvas></div>
                 </div>
             </section>
 
@@ -205,10 +175,8 @@
         let filteredData = [];
         let barChartInstance = null;
         let pieChartInstance = null;
-        let lineChartInstance = null;
-        let percentChartInstance = null;
-        let pmlBarChartInstance = null;
-        let pplBarChartInstance = null;
+        let stackedPmlInstance = null;
+        let stackedPplInstance = null;
         let currentSort = { column: null, ascending: true };
 
         async function loadData() {
@@ -339,6 +307,7 @@
             updateKPIs();
             updateTable();
             updateCharts();
+            renderStackedCharts();
         }
 
         function updateKPIs() {
@@ -351,17 +320,11 @@
                 return acc;
             }, { total: 0, draft: 0, open: 0, submitted: 0, completed: 0 });
 
-            const done = totals.submitted + totals.completed;
-            const rate = totals.total > 0 ? ((done / totals.total) * 100).toFixed(1) : 0;
-            const targetHarianSaran = Math.ceil((totals.total - done) / 7); 
-
             document.getElementById('kpiTotal').textContent = totals.total.toLocaleString();
             document.getElementById('kpiDraft').textContent = totals.draft.toLocaleString();
             document.getElementById('kpiOpen').textContent = totals.open.toLocaleString();
             document.getElementById('kpiSubmitted').textContent = totals.submitted.toLocaleString();
             document.getElementById('kpiCompleted').textContent = totals.completed.toLocaleString();
-            document.getElementById('kpiRate').textContent = rate + '%';
-            document.getElementById('targetHarianInfo').textContent = `~${targetHarianSaran} dokumen/hari (Sisa beban: ${totals.total - done})`;
         }
 
         function updateTable() {
@@ -419,7 +382,6 @@
         }
 
         function updateCharts() {
-            // --- 1. Kecamatan Map ---
             const kecMap = {};
             filteredData.forEach(item => {
                 if (!kecMap[item.namaKec]) {
@@ -430,44 +392,32 @@
                 kecMap[item.namaKec].submitted += Number(item.SUBMITTED || 0);
             });
 
-            const labelsKec = Object.keys(kecMap);
-            const dataKecCompleted = labelsKec.map(k => kecMap[k].completed);
-            const dataKecSubmitted = labelsKec.map(k => kecMap[k].submitted);
-            const dataKecTotal = labelsKec.map(k => kecMap[k].total);
-            const dataKecPercent = labelsKec.map(k => {
-                const t = kecMap[k].total;
-                const d = kecMap[k].completed + kecMap[k].submitted;
-                return t > 0 ? ((d / t) * 100).toFixed(1) : 0;
-            });
+            const labels = Object.keys(kecMap);
+            const dataCompleted = labels.map(k => kecMap[k].completed);
+            const dataSubmitted = labels.map(k => kecMap[k].submitted);
+            const dataTotal = labels.map(k => kecMap[k].total);
 
-            // Bar Chart Kecamatan
             const ctxBar = document.getElementById('barChart').getContext('2d');
             if (barChartInstance) barChartInstance.destroy();
+
             barChartInstance = new Chart(ctxBar, {
                 type: 'bar',
                 data: {
-                    labels: labelsKec,
+                    labels: labels,
                     datasets: [
-                        { label: 'Completed', data: dataKecCompleted, backgroundColor: '#10b981', borderRadius: 4 },
-                        { label: 'Submitted', data: dataKecSubmitted, backgroundColor: '#6366f1', borderRadius: 4 },
-                        { label: 'Total Assignment', data: dataKecTotal, backgroundColor: '#cbd5e1', borderRadius: 4 }
+                        { label: 'Completed', data: dataCompleted, backgroundColor: '#10b981', borderRadius: 4 },
+                        { label: 'Submitted', data: dataSubmitted, backgroundColor: '#6366f1', borderRadius: 4 },
+                        { label: 'Total Assignment', data: dataTotal, backgroundColor: '#cbd5e1', borderRadius: 4 }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    onClick: (e, elements) => {
-                        if (elements.length > 0) {
-                            document.getElementById('filterKec').value = labelsKec[elements[0].index];
-                            applyFilters();
-                        }
-                    },
                     plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
                     scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f5f9' } } }
                 }
             });
 
-            // --- 2. Pie Chart Status ---
             const sumDraft = filteredData.reduce((acc, curr) => acc + Number(curr.DRAFT || 0), 0);
             const sumOpen = filteredData.reduce((acc, curr) => acc + Number(curr.OPEN || 0), 0);
             const sumSubmitted = filteredData.reduce((acc, curr) => acc + Number(curr.SUBMITTED || 0), 0);
@@ -475,6 +425,7 @@
 
             const ctxPie = document.getElementById('pieChart').getContext('2d');
             if (pieChartInstance) pieChartInstance.destroy();
+
             pieChartInstance = new Chart(ctxPie, {
                 type: 'doughnut',
                 data: {
@@ -493,138 +444,55 @@
                     cutout: '65%'
                 }
             });
+        }
 
-            // --- 3. Line Chart Tren Harian ---
-            const ctxLine = document.getElementById('lineChart').getContext('2d');
-            if (lineChartInstance) lineChartInstance.destroy();
-            lineChartInstance = new Chart(ctxLine, {
-                type: 'line',
-                data: {
-                    labels: ['H-5', 'H-4', 'H-3', 'H-2', 'H-1', 'Hari Ini'],
-                    datasets: [{
-                        label: 'Akumulasi Dokumen Selesai (Sub+Com)',
-                        data: [
-                            Math.round((sumSubmitted + sumCompleted) * 0.4),
-                            Math.round((sumSubmitted + sumCompleted) * 0.55),
-                            Math.round((sumSubmitted + sumCompleted) * 0.7),
-                            Math.round((sumSubmitted + sumCompleted) * 0.82),
-                            Math.round((sumSubmitted + sumCompleted) * 0.93),
-                            (sumSubmitted + sumCompleted)
-                        ],
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-                    scales: { y: { grid: { color: '#f1f5f9' } } }
-                }
-            });
+        function renderStackedCharts() {
+            function processStackedData(isPml) {
+                const map = {};
+                filteredData.forEach(item => {
+                    const key = isPml ? item.namaPml : item.namaPpl;
+                    if (!map[key]) map[key] = { draft: 0, open: 0, submitted: 0, completed: 0, total: 0 };
+                    
+                    const t = Number(item.TOTAL_ASSIGNMENT || 1);
+                    map[key].draft += (Number(item.DRAFT || 0) / t) * 100;
+                    map[key].open += (Number(item.OPEN || 0) / t) * 100;
+                    map[key].submitted += (Number(item.SUBMITTED || 0) / t) * 100;
+                    map[key].completed += (Number(item.COMPLETED || 0) / t) * 100;
+                });
+                return map;
+            }
 
-            // --- 4. Percent Chart Kecamatan ---
-            const ctxPercent = document.getElementById('percentChart').getContext('2d');
-            if (percentChartInstance) percentChartInstance.destroy();
-            percentChartInstance = new Chart(ctxPercent, {
+            const dataPml = processStackedData(true);
+            const dataPpl = processStackedData(false);
+
+            const createConfig = (labels, dataMap) => ({
                 type: 'bar',
                 data: {
-                    labels: labelsKec,
-                    datasets: [{
-                        label: 'Capaian Penyelesaian (%)',
-                        data: dataKecPercent,
-                        backgroundColor: '#06b6d4',
-                        borderRadius: 4
-                    }]
+                    labels: labels,
+                    datasets: [
+                        { label: 'Completed', data: labels.map(l => dataMap[l].completed), backgroundColor: '#10b981' },
+                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#6366f1' },
+                        { label: 'Open', data: labels.map(l => dataMap[l].open), backgroundColor: '#3b82f6' },
+                        { label: 'Draft', data: labels.map(l => dataMap[l].draft), backgroundColor: '#f59e0b' }
+                    ]
                 },
                 options: {
+                    indexAxis: 'y',
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
                     scales: { 
-                        x: { grid: { display: false } }, 
-                        y: { max: 100, grid: { color: '#f1f5f9' }, ticks: { callback: function(value) { return value + '%'; } } } 
-                    }
-                }
-            });
-
-            // --- 5. Bar Chart PML (Pengawas) ---
-            const pmlMap = {};
-            filteredData.forEach(item => {
-                const name = item.namaPml;
-                if (!pmlMap[name]) pmlMap[name] = { done: 0, total: 0 };
-                pmlMap[name].done += (Number(item.SUBMITTED || 0) + Number(item.COMPLETED || 0));
-                pmlMap[name].total += Number(item.TOTAL_ASSIGNMENT || 0);
-            });
-            const labelsPml = Object.keys(pmlMap);
-            const dataPmlDone = labelsPml.map(p => pmlMap[p].done);
-            const dataPmlTotal = labelsPml.map(p => pmlMap[p].total);
-
-            const ctxPml = document.getElementById('pmlBarChart').getContext('2d');
-            if (pmlBarChartInstance) pmlBarChartInstance.destroy();
-            pmlBarChartInstance = new Chart(ctxPml, {
-                type: 'bar',
-                data: {
-                    labels: labelsPml,
-                    datasets: [
-                        { label: 'Selesai (Sub+Com)', data: dataPmlDone, backgroundColor: '#3b82f6', borderRadius: 4 },
-                        { label: 'Total Assignment', data: dataPmlTotal, backgroundColor: '#e2e8f0', borderRadius: 4 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y', // Horizontal bar agar nama panjang terbaca rapi
-                    onClick: (e, elements) => {
-                        if (elements.length > 0) {
-                            document.getElementById('filterPml').value = labelsPml[elements[0].index];
-                            applyFilters();
-                        }
+                        x: { stacked: true, max: 100, ticks: { callback: v => v + '%' } }, 
+                        y: { stacked: true } 
                     },
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-                    scales: { x: { grid: { color: '#f1f5f9' } }, y: { grid: { display: false } } }
+                    plugins: { legend: { position: 'top' } }
                 }
             });
 
-            // --- 6. Bar Chart PPL (Pencacah) ---
-            const pplMap = {};
-            filteredData.forEach(item => {
-                const name = item.namaPpl;
-                if (!pplMap[name]) pplMap[name] = { done: 0, total: 0 };
-                pplMap[name].done += (Number(item.SUBMITTED || 0) + Number(item.COMPLETED || 0));
-                pplMap[name].total += Number(item.TOTAL_ASSIGNMENT || 0);
-            });
-            const labelsPpl = Object.keys(pplMap);
-            const dataPplDone = labelsPpl.map(p => pplMap[p].done);
-            const dataPplTotal = labelsPpl.map(p => pplMap[p].total);
+            if (stackedPmlInstance) stackedPmlInstance.destroy();
+            stackedPmlInstance = new Chart(document.getElementById('stackedPmlChart'), createConfig(Object.keys(dataPml), dataPml));
 
-            const ctxPpl = document.getElementById('pplBarChart').getContext('2d');
-            if (pplBarChartInstance) pplBarChartInstance.destroy();
-            pplBarChartInstance = new Chart(ctxPpl, {
-                type: 'bar',
-                data: {
-                    labels: labelsPpl,
-                    datasets: [
-                        { label: 'Selesai (Sub+Com)', data: dataPplDone, backgroundColor: '#10b981', borderRadius: 4 },
-                        { label: 'Total Assignment', data: dataPplTotal, backgroundColor: '#e2e8f0', borderRadius: 4 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y', // Horizontal bar
-                    onClick: (e, elements) => {
-                        if (elements.length > 0) {
-                            document.getElementById('filterPpl').value = labelsPpl[elements[0].index];
-                            applyFilters();
-                        }
-                    },
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-                    scales: { x: { grid: { color: '#f1f5f9' } }, y: { grid: { display: false } } }
-                }
-            });
+            if (stackedPplInstance) stackedPplInstance.destroy();
+            stackedPplInstance = new Chart(document.getElementById('stackedPplChart'), createConfig(Object.keys(dataPpl), dataPpl));
         }
 
         window.onload = loadData;
