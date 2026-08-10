@@ -168,11 +168,11 @@
         async function loadData() {
             try {
                 const [resProgress, resMaster] = await Promise.all([
-                    fetch('sakernas_progress.json?' + new Date().getTime()),
+                    fetch('progress_pendataan.json?' + new Date().getTime()),
                     fetch('master_reference.json?' + new Date().getTime()).catch(() => null)
                 ]);
 
-                if (!resProgress.ok) throw new Error('File sakernas_progress.json tidak ditemukan.');
+                if (!resProgress.ok) throw new Error('File progress_pendataan.json tidak ditemukan.');
                 rawData = await resProgress.json();
 
                 if (resMaster && resMaster.ok) {
