@@ -17,7 +17,7 @@
             <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
                     <h1 class="text-2xl font-bold tracking-tight">Dashboard Monitoring Sakernas</h1>
-                    <p class="text-xs text-slate-400 mt-0.5">Sumber Data: <span class="font-mono text-cyan-400">progress_pendataan.json</span> & <span class="font-mono text-cyan-400">master_reference.json</span></p>
+                    <p class="text-xs text-slate-400 mt-0.5">Sumber Data: <span class="font-mono text-cyan-400">sakernas_progress.json</span> & <span class="font-mono text-cyan-400">master_reference.json</span></p>
                 </div>
                 <div id="lastUpdate" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300">
                     Memuat data...
@@ -182,11 +182,11 @@
         async function loadData() {
             try {
                 const [resProgress, resMaster] = await Promise.all([
-                    fetch('progress_pendataan.json?' + new Date().getTime()),
+                    fetch('sakernas_progress.json?' + new Date().getTime()),
                     fetch('master_reference.json?' + new Date().getTime()).catch(() => null)
                 ]);
 
-                if (!resProgress.ok) throw new Error('File progress_pendataan.json tidak ditemukan.');
+                if (!resProgress.ok) throw new Error('File sakernas_progress.json tidak ditemukan.');
                 rawData = await resProgress.json();
 
                 if (resMaster && resMaster.ok) {
@@ -451,14 +451,32 @@
                 const map = {};
                 filteredData.forEach(item => {
                     const key = isPml ? item.namaPml : item.namaPpl;
-                    if (!map[key]) map[key] = { draft: 0, open: 0, submitted: 0, completed: 0, total: 0 };
+                    if (!map[key]) {
+                        map[key] = { draft: 0, open: 0, submitted: 0, completed: 0, totalSum: 0 };
+                    }
                     
-                    const t = Number(item.TOTAL_ASSIGNMENT || 1);
-                    map[key].draft += (Number(item.DRAFT || 0) / t) * 100;
-                    map[key].open += (Number(item.OPEN || 0) / t) * 100;
-                    map[key].submitted += (Number(item.SUBMITTED || 0) / t) * 100;
-                    map[key].completed += (Number(item.COMPLETED || 0) / t) * 100;
+                    const d = Number(item.DRAFT || 0);
+                    const o = Number(item.OPEN || 0);
+                    const s = Number(item.SUBMITTED || 0);
+                    const c = Number(item.COMPLETED || 0);
+                    const rowTotal = d + o + s + c; // Total dari penjumlahan DRAFT, OPEN, SUBMITTED, COMPLETED
+
+                    map[key].draft += d;
+                    map[key].open += o;
+                    map[key].submitted += s;
+                    map[key].completed += c;
+                    map[key].totalSum += rowTotal;
                 });
+
+                // Ubah nilai absolut ke bentuk persentase berdasarkan total penjumlahan per petugas
+                Object.keys(map).forEach(key => {
+                    const t = map[key].totalSum || 1; // Mencegah division by zero
+                    map[key].draft = (map[key].draft / t) * 100;
+                    map[key].open = (map[key].open / t) * 100;
+                    map[key].submitted = (map[key].submitted / t) * 100;
+                    map[key].completed = (map[key].completed / t) * 100;
+                });
+
                 return map;
             }
 
