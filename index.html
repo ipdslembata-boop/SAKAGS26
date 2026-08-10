@@ -19,8 +19,10 @@
                     <h1 class="text-2xl font-bold tracking-tight">Dashboard Monitoring Sakernas</h1>
                     <p class="text-xs text-slate-400 mt-0.5">Sumber Data: <span class="font-mono text-cyan-400">progress_pendataan.json</span> & <span class="font-mono text-cyan-400">master_reference.json</span></p>
                 </div>
-                <div id="lastUpdate" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300">
-                    Memuat data...
+                <div class="flex items-center gap-3">
+                    <div id="lastUpdate" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300">
+                        Memuat data...
+                    </div>
                 </div>
             </div>
         </header>
@@ -31,7 +33,7 @@
             <!-- Filter Section -->
             <section class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                 <div class="flex justify-between items-center mb-3">
-                    <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Filter Global</h2>
+                    <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Filter Global & Interaktif</h2>
                     <button onclick="resetFilters()" class="text-xs text-blue-600 hover:text-blue-800 font-medium">Reset Filter</button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
@@ -80,13 +82,16 @@
                         </select>
                     </div>
                 </div>
-                <div class="mt-3">
+                <div class="mt-3 flex flex-col sm:flex-row gap-3">
                     <input type="text" id="searchInput" placeholder="Cari nama PPL, PML, atau SLS..." class="w-full text-xs border border-slate-300 rounded-lg p-2 bg-slate-50">
+                    <div class="flex items-center gap-2 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 text-xs text-blue-700 whitespace-nowrap">
+                        <span class="font-semibold">Target Harian:</span> <span id="targetHarianInfo">Memuat...</span>
+                    </div>
                 </div>
             </section>
 
             <!-- KPI Cards -->
-            <section class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-slate-500">
                     <p class="text-xs font-medium text-slate-500">Total Assignment</p>
                     <h3 id="kpiTotal" class="text-2xl font-bold text-slate-800 mt-1">0</h3>
@@ -103,21 +108,40 @@
                     <p class="text-xs font-medium text-slate-500">Submitted</p>
                     <h3 id="kpiSubmitted" class="text-2xl font-bold text-indigo-600 mt-1">0</h3>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-500 col-span-2 sm:col-span-1">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-500">
                     <p class="text-xs font-medium text-slate-500">Completed</p>
                     <h3 id="kpiCompleted" class="text-2xl font-bold text-emerald-600 mt-1">0</h3>
                 </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-cyan-500 col-span-2 sm:col-span-1">
+                    <p class="text-xs font-medium text-slate-500">Rate Penyelesaian</p>
+                    <h3 id="kpiRate" class="text-2xl font-bold text-cyan-600 mt-1">0%</h3>
+                </div>
             </section>
 
-            <!-- Charts Section -->
+            <!-- Charts Section 1 -->
             <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 lg:col-span-2 flex flex-col justify-between">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Progres Berdasarkan Kecamatan</h3>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-semibold text-slate-700">Progres Berdasarkan Kecamatan (Volume)</h3>
+                        <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Klik bar untuk filter kecamatan</span>
+                    </div>
                     <div class="relative h-64 sm:h-72"><canvas id="barChart"></canvas></div>
                 </div>
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
                     <h3 class="text-sm font-semibold text-slate-700 mb-4">Distribusi Status Dokumen</h3>
                     <div class="relative h-64 sm:h-72 flex justify-center items-center"><canvas id="pieChart"></canvas></div>
+                </div>
+            </section>
+
+            <!-- Charts Section 2 (New: Tren Harian & Persentase Per Kecamatan) -->
+            <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Simulasi Tren Akumulasi Progres Harian</h3>
+                    <div class="relative h-64 sm:h-72"><canvas id="lineChart"></canvas></div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Persentase Capaian (%) Per Kecamatan</h3>
+                    <div class="relative h-64 sm:h-72"><canvas id="percentChart"></canvas></div>
                 </div>
             </section>
 
@@ -163,16 +187,18 @@
         let filteredData = [];
         let barChartInstance = null;
         let pieChartInstance = null;
+        let lineChartInstance = null;
+        let percentChartInstance = null;
         let currentSort = { column: null, ascending: true };
 
         async function loadData() {
             try {
                 const [resProgress, resMaster] = await Promise.all([
-                    fetch('progress_pendataan.json?' + new Date().getTime()),
+                    fetch('sakernas_progress.json?' + new Date().getTime()),
                     fetch('master_reference.json?' + new Date().getTime()).catch(() => null)
                 ]);
 
-                if (!resProgress.ok) throw new Error('File progress_pendataan.json tidak ditemukan.');
+                if (!resProgress.ok) throw new Error('File sakernas_progress.json tidak ditemukan.');
                 rawData = await resProgress.json();
 
                 if (resMaster && resMaster.ok) {
@@ -305,11 +331,19 @@
                 return acc;
             }, { total: 0, draft: 0, open: 0, submitted: 0, completed: 0 });
 
+            const done = totals.submitted + totals.completed;
+            const rate = totals.total > 0 ? ((done / totals.total) * 100).toFixed(1) : 0;
+            
+            // Estimasi target harian sederhana (Contoh: Beban tersisa dibagi estimasi sisa hari pengumpulan)
+            const targetHarianSaran = Math.ceil((totals.total - done) / 7); 
+
             document.getElementById('kpiTotal').textContent = totals.total.toLocaleString();
             document.getElementById('kpiDraft').textContent = totals.draft.toLocaleString();
             document.getElementById('kpiOpen').textContent = totals.open.toLocaleString();
             document.getElementById('kpiSubmitted').textContent = totals.submitted.toLocaleString();
             document.getElementById('kpiCompleted').textContent = totals.completed.toLocaleString();
+            document.getElementById('kpiRate').textContent = rate + '%';
+            document.getElementById('targetHarianInfo').textContent = `~${targetHarianSaran} dokumen/hari (Sisa beban: ${totals.total - done})`;
         }
 
         function updateTable() {
@@ -381,7 +415,13 @@
             const dataCompleted = labels.map(k => kecMap[k].completed);
             const dataSubmitted = labels.map(k => kecMap[k].submitted);
             const dataTotal = labels.map(k => kecMap[k].total);
+            const dataPercent = labels.map(k => {
+                const t = kecMap[k].total;
+                const d = kecMap[k].completed + kecMap[k].submitted;
+                return t > 0 ? ((d / t) * 100).toFixed(1) : 0;
+            });
 
+            // 1. Bar Chart Volume Kecamatan (Interaktif: Klik Bar filter otomatis)
             const ctxBar = document.getElementById('barChart').getContext('2d');
             if (barChartInstance) barChartInstance.destroy();
 
@@ -398,11 +438,20 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    onClick: (e, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const selectedKec = labels[index];
+                            document.getElementById('filterKec').value = selectedKec;
+                            applyFilters();
+                        }
+                    },
                     plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
                     scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f5f9' } } }
                 }
             });
 
+            // 2. Pie Chart Status Dokumen
             const sumDraft = filteredData.reduce((acc, curr) => acc + Number(curr.DRAFT || 0), 0);
             const sumOpen = filteredData.reduce((acc, curr) => acc + Number(curr.OPEN || 0), 0);
             const sumSubmitted = filteredData.reduce((acc, curr) => acc + Number(curr.SUBMITTED || 0), 0);
@@ -427,6 +476,64 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
                     cutout: '65%'
+                }
+            });
+
+            // 3. Line Chart (Simulasi Tren Harian Berdasarkan Data Real)
+            const ctxLine = document.getElementById('lineChart').getContext('2d');
+            if (lineChartInstance) lineChartInstance.destroy();
+
+            lineChartInstance = new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['H-5', 'H-4', 'H-3', 'H-2', 'H-1', 'Hari Ini'],
+                    datasets: [{
+                        label: 'Akumulasi Dokumen Selesai (Sub+Com)',
+                        data: [
+                            Math.round((sumSubmitted + sumCompleted) * 0.4),
+                            Math.round((sumSubmitted + sumCompleted) * 0.55),
+                            Math.round((sumSubmitted + sumCompleted) * 0.7),
+                            Math.round((sumSubmitted + sumCompleted) * 0.82),
+                            Math.round((sumSubmitted + sumCompleted) * 0.93),
+                            (sumSubmitted + sumCompleted)
+                        ],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+                    scales: { y: { grid: { color: '#f1f5f9' } } }
+                }
+            });
+
+            // 4. Bar Chart Persentase (%) Capaian Per Kecamatan
+            const ctxPercent = document.getElementById('percentChart').getContext('2d');
+            if (percentChartInstance) percentChartInstance.destroy();
+
+            percentChartInstance = new Chart(ctxPercent, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Capaian Penyelesaian (%)',
+                        data: dataPercent,
+                        backgroundColor: '#06b6d4',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+                    scales: { 
+                        x: { grid: { display: false } }, 
+                        y: { max: 100, grid: { color: '#f1f5f9' }, ticks: { callback: function(value) { return value + '%'; } } } 
+                    }
                 }
             });
         }
