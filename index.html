@@ -112,11 +112,21 @@
             <!-- Charts Section -->
             <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 lg:col-span-2 flex flex-col justify-between">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Progres Berdasarkan Kecamatan</h3>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-semibold text-slate-700">Progres Berdasarkan Kecamatan</h3>
+                        <button onclick="downloadChart('barChart', 'progres_kecamatan.png')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-2.5 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5 transition-colors">
+                            ⬇ Unduh PNG
+                        </button>
+                    </div>
                     <div class="relative h-64 sm:h-72"><canvas id="barChart"></canvas></div>
                 </div>
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Distribusi Status Dokumen</h3>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-semibold text-slate-700">Distribusi Status Dokumen</h3>
+                        <button onclick="downloadChart('pieChart', 'distribusi_status.png')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-2.5 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5 transition-colors">
+                            ⬇ Unduh PNG
+                        </button>
+                    </div>
                     <div class="relative h-64 sm:h-72 flex justify-center items-center"><canvas id="pieChart"></canvas></div>
                 </div>
             </section>
@@ -124,12 +134,22 @@
             <!-- Stacked Bar Section per Petugas -->
             <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Persentase Status per PML</h3>
-                    <div class="relative h-[400px] overflow-y-auto"><canvas id="stackedPmlChart"></canvas></div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-semibold text-slate-700">Persentase Status per PML</h3>
+                        <button onclick="downloadChart('stackedPmlChart', 'progres_pml.png')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-2.5 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5 transition-colors">
+                            ⬇ Unduh PNG
+                        </button>
+                    </div>
+                    <div id="pmlContainer" class="relative overflow-y-auto max-h-[500px]"><canvas id="stackedPmlChart"></canvas></div>
                 </div>
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-sm font-semibold text-slate-700 mb-4">Persentase Status per PPL</h3>
-                    <div class="relative h-[400px] overflow-y-auto"><canvas id="stackedPplChart"></canvas></div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-semibold text-slate-700">Persentase Status per PPL</h3>
+                        <button onclick="downloadChart('stackedPplChart', 'progres_ppl.png')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-2.5 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5 transition-colors">
+                            ⬇ Unduh PNG
+                        </button>
+                    </div>
+                    <div id="pplContainer" class="relative overflow-y-auto max-h-[500px]"><canvas id="stackedPplChart"></canvas></div>
                 </div>
             </section>
 
@@ -459,7 +479,7 @@
                     const o = Number(item.OPEN || 0);
                     const s = Number(item.SUBMITTED || 0);
                     const c = Number(item.COMPLETED || 0);
-                    const rowTotal = d + o + s + c; // Total dari penjumlahan DRAFT, OPEN, SUBMITTED, COMPLETED
+                    const rowTotal = d + o + s + c;
 
                     map[key].draft += d;
                     map[key].open += o;
@@ -468,9 +488,8 @@
                     map[key].totalSum += rowTotal;
                 });
 
-                // Ubah nilai absolut ke bentuk persentase berdasarkan total penjumlahan per petugas
                 Object.keys(map).forEach(key => {
-                    const t = map[key].totalSum || 1; // Mencegah division by zero
+                    const t = map[key].totalSum || 1;
                     map[key].draft = (map[key].draft / t) * 100;
                     map[key].open = (map[key].open / t) * 100;
                     map[key].submitted = (map[key].submitted / t) * 100;
@@ -483,13 +502,19 @@
             const dataPml = processStackedData(true);
             const dataPpl = processStackedData(false);
 
+            const pmlKeys = Object.keys(dataPml);
+            const pplKeys = Object.keys(dataPpl);
+
+            document.getElementById('pmlContainer').style.height = `${Math.max(400, pmlKeys.length * 30)}px`;
+            document.getElementById('pplContainer').style.height = `${Math.max(400, pplKeys.length * 30)}px`;
+
             const createConfig = (labels, dataMap) => ({
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [
                         { label: 'Completed', data: labels.map(l => dataMap[l].completed), backgroundColor: '#10b981' },
-                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#66FF00' },
+                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#6366f1' },
                         { label: 'Open', data: labels.map(l => dataMap[l].open), backgroundColor: '#3b82f6' },
                         { label: 'Draft', data: labels.map(l => dataMap[l].draft), backgroundColor: '#f59e0b' }
                     ]
@@ -507,10 +532,29 @@
             });
 
             if (stackedPmlInstance) stackedPmlInstance.destroy();
-            stackedPmlInstance = new Chart(document.getElementById('stackedPmlChart'), createConfig(Object.keys(dataPml), dataPml));
+            stackedPmlInstance = new Chart(document.getElementById('stackedPmlChart'), createConfig(pmlKeys, dataPml));
 
             if (stackedPplInstance) stackedPplInstance.destroy();
-            stackedPplInstance = new Chart(document.getElementById('stackedPplChart'), createConfig(Object.keys(dataPpl), dataPpl));
+            stackedPplInstance = new Chart(document.getElementById('stackedPplChart'), createConfig(pplKeys, dataPpl));
+        }
+
+        // Fungsi Universal untuk Download Chart ke PNG
+        function downloadChart(canvasId, filename) {
+            let chartInstance = null;
+            if (canvasId === 'barChart') chartInstance = barChartInstance;
+            if (canvasId === 'pieChart') chartInstance = pieChartInstance;
+            if (canvasId === 'stackedPmlChart') chartInstance = stackedPmlInstance;
+            if (canvasId === 'stackedPplChart') chartInstance = stackedPplInstance;
+
+            if (!chartInstance) {
+                alert('Chart belum siap atau tidak ditemukan!');
+                return;
+            }
+
+            const imageLink = document.createElement('a');
+            imageLink.download = filename;
+            imageLink.href = chartInstance.toBase64Image();
+            imageLink.click();
         }
 
         window.onload = loadData;
