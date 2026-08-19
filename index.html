@@ -99,9 +99,9 @@
                     <p class="text-xs font-medium text-slate-500">Open</p>
                     <h3 id="kpiOpen" class="text-2xl font-bold text-blue-600 mt-1">0</h3>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-indigo-500">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-purple-500">
                     <p class="text-xs font-medium text-slate-500">Submitted</p>
-                    <h3 id="kpiSubmitted" class="text-2xl font-bold text-indigo-600 mt-1">0</h3>
+                    <h3 id="kpiSubmitted" class="text-2xl font-bold text-purple-600 mt-1">0</h3>
                 </div>
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-500 col-span-2 sm:col-span-1">
                     <p class="text-xs font-medium text-slate-500">Completed</p>
@@ -374,7 +374,7 @@
                     <td class="p-3 text-right font-semibold">${row.TOTAL_ASSIGNMENT}</td>
                     <td class="p-3 text-right text-amber-600">${row.DRAFT}</td>
                     <td class="p-3 text-right text-blue-600">${row.OPEN}</td>
-                    <td class="p-3 text-right text-indigo-600">${row.SUBMITTED}</td>
+                    <td class="p-3 text-right text-purple-600 font-semibold">${row.SUBMITTED}</td>
                     <td class="p-3 text-right text-emerald-600 font-semibold">${row.COMPLETED}</td>
                 `;
                 tbody.appendChild(tr);
@@ -426,7 +426,7 @@
                     labels: labels,
                     datasets: [
                         { label: 'Completed', data: dataCompleted, backgroundColor: '#10b981', borderRadius: 4 },
-                        { label: 'Submitted', data: dataSubmitted, backgroundColor: '#6366f1', borderRadius: 4 },
+                        { label: 'Submitted', data: dataSubmitted, backgroundColor: '#8b5cf6', borderRadius: 4 },
                         { label: 'Total Assignment', data: dataTotal, backgroundColor: '#cbd5e1', borderRadius: 4 }
                     ]
                 },
@@ -452,7 +452,7 @@
                     labels: ['Draft', 'Open', 'Submitted', 'Completed'],
                     datasets: [{
                         data: [sumDraft, sumOpen, sumSubmitted, sumCompleted],
-                        backgroundColor: ['#f59e0b', '#3b82f6', '#6366f1', '#10b981'],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#8b5cf6', '#10b981'],
                         borderWidth: 2,
                         borderColor: '#ffffff'
                     }]
@@ -514,7 +514,7 @@
                     labels: labels,
                     datasets: [
                         { label: 'Completed', data: labels.map(l => dataMap[l].completed), backgroundColor: '#10b981' },
-                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#6366f1' },
+                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#8b5cf6' },
                         { label: 'Open', data: labels.map(l => dataMap[l].open), backgroundColor: '#3b82f6' },
                         { label: 'Draft', data: labels.map(l => dataMap[l].draft), backgroundColor: '#f59e0b' }
                     ]
@@ -538,7 +538,6 @@
             stackedPplInstance = new Chart(document.getElementById('stackedPplChart'), createConfig(pplKeys, dataPpl));
         }
 
-        // Fungsi Universal untuk Download Chart ke PNG
         function downloadChart(canvasId, filename) {
             let chartInstance = null;
             if (canvasId === 'barChart') chartInstance = barChartInstance;
