@@ -425,7 +425,7 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Completed', data: dataCompleted, backgroundColor: '#10b981', borderRadius: 4 },
+                        { label: 'Completed', data: dataCompleted, backgroundColor: '#059669', borderRadius: 4 },
                         { label: 'Submitted', data: dataSubmitted, backgroundColor: '#8b5cf6', borderRadius: 4 },
                         { label: 'Total Assignment', data: dataTotal, backgroundColor: '#cbd5e1', borderRadius: 4 }
                     ]
@@ -452,7 +452,7 @@
                     labels: ['Draft', 'Open', 'Submitted', 'Completed'],
                     datasets: [{
                         data: [sumDraft, sumOpen, sumSubmitted, sumCompleted],
-                        backgroundColor: ['#f59e0b', '#3b82f6', '#8b5cf6', '#10b981'],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#8b5cf6', '#059669'],
                         borderWidth: 2,
                         borderColor: '#ffffff'
                     }]
@@ -513,8 +513,8 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Completed', data: labels.map(l => dataMap[l].completed), backgroundColor: '#10b981' },
-                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#8b5cf6' },
+                        { label: 'Completed', data: labels.map(l => dataMap[l].completed), backgroundColor: '#059669' },
+                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#22c55e' },
                         { label: 'Open', data: labels.map(l => dataMap[l].open), backgroundColor: '#3b82f6' },
                         { label: 'Draft', data: labels.map(l => dataMap[l].draft), backgroundColor: '#f59e0b' }
                     ]
