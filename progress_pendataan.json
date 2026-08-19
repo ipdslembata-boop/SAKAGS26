@@ -10,8 +10,8 @@
     "USERNAME": "wilsonlanang613@gmail.com",
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
-    "DRAFT": 1,
-    "OPEN": 1,
+    "DRAFT": 2,
+    "OPEN": 0,
     "SUBMITTED": 8,
     "COMPLETED": 0
   },
@@ -76,7 +76,7 @@
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 3,
+    "SUBMITTED": 2,
     "COMPLETED": 0
   },
   {
@@ -108,7 +108,7 @@
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 10,
+    "SUBMITTED": 6,
     "COMPLETED": 0
   },
   {
@@ -123,8 +123,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 4,
-    "SUBMITTED": 6,
+    "OPEN": 1,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -140,7 +140,7 @@
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 8,
+    "SUBMITTED": 0,
     "COMPLETED": 0
   },
   {
@@ -171,8 +171,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 2,
-    "SUBMITTED": 8,
+    "OPEN": 1,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -187,8 +187,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 2,
-    "SUBMITTED": 0,
+    "OPEN": 0,
+    "SUBMITTED": 2,
     "COMPLETED": 0
   },
   {
@@ -219,8 +219,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 7,
-    "SUBMITTED": 3,
+    "OPEN": 5,
+    "SUBMITTED": 5,
     "COMPLETED": 0
   },
   {
@@ -267,8 +267,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 4,
-    "SUBMITTED": 6,
+    "OPEN": 1,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -316,7 +316,7 @@
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
     "OPEN": 0,
-    "SUBMITTED": 9,
+    "SUBMITTED": 4,
     "COMPLETED": 0
   },
   {
@@ -347,8 +347,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 8,
-    "SUBMITTED": 2,
+    "OPEN": 4,
+    "SUBMITTED": 6,
     "COMPLETED": 0
   },
   {
@@ -379,8 +379,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 10,
-    "SUBMITTED": 0,
+    "OPEN": 9,
+    "SUBMITTED": 1,
     "COMPLETED": 0
   },
   {
@@ -395,8 +395,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 1,
-    "OPEN": 1,
-    "SUBMITTED": 8,
+    "OPEN": 0,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -411,8 +411,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 1,
-    "SUBMITTED": 9,
+    "OPEN": 0,
+    "SUBMITTED": 10,
     "COMPLETED": 0
   },
   {
@@ -426,9 +426,9 @@
     "USERNAME": "weranlin@gmail.com",
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
-    "DRAFT": 2,
+    "DRAFT": 1,
     "OPEN": 0,
-    "SUBMITTED": 8,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -459,8 +459,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 1,
-    "OPEN": 1,
-    "SUBMITTED": 8,
+    "OPEN": 0,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -475,8 +475,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 2,
-    "SUBMITTED": 8,
+    "OPEN": 1,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -586,8 +586,8 @@
     "USERNAME": "ullyeflensiana@gmail.com",
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
-    "DRAFT": 6,
-    "OPEN": 3,
+    "DRAFT": 8,
+    "OPEN": 1,
     "SUBMITTED": 0,
     "COMPLETED": 0
   },
@@ -602,8 +602,8 @@
     "USERNAME": "ullyeflensiana@gmail.com",
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
-    "DRAFT": 2,
-    "OPEN": 8,
+    "DRAFT": 7,
+    "OPEN": 3,
     "SUBMITTED": 0,
     "COMPLETED": 0
   },
@@ -651,8 +651,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 2,
-    "SUBMITTED": 8,
+    "OPEN": 1,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
@@ -683,8 +683,8 @@
     "ROLE": "PPL",
     "TOTAL_ASSIGNMENT": 10,
     "DRAFT": 0,
-    "OPEN": 3,
-    "SUBMITTED": 7,
+    "OPEN": 1,
+    "SUBMITTED": 9,
     "COMPLETED": 0
   },
   {
