@@ -453,25 +453,57 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Rejected', data: dataRejected, backgroundColor: '#b91c1c', borderRadius: 4 },
-                        { label: 'Approved', data: dataApproved, backgroundColor: '#065f46', borderRadius: 4 },
-                        { label: 'Submitted', data: dataSubmitted, backgroundColor: '#22c55e', borderRadius: 4 },
-                        { label: 'Total Assignment', data: dataTotal, backgroundColor: '#cbd5e1', borderRadius: 4 }
+                        { 
+                            label: 'Approved', 
+                            data: dataApproved, 
+                            backgroundColor: '#065f46', 
+                            borderRadius: 0,
+                            stack: 'submittedGroup' // Mengelompokkan stack yang sama
+                        },
+                        { 
+                            label: 'Rejected', 
+                            data: dataRejected, 
+                            backgroundColor: '#b91c1c', 
+                            borderRadius: { topLeft: 4, topRight: 4 }, // Rounded di bagian atas stack
+                            stack: 'submittedGroup' // Mengelompokkan stack yang sama
+                        },
+                        { 
+                            label: 'Submitted (Total)', 
+                            data: dataSubmitted, 
+                            backgroundColor: '#22c55e', 
+                            borderRadius: 4 
+                        },
+                        { 
+                            label: 'Total Assignment', 
+                            data: dataTotal, 
+                            backgroundColor: '#cbd5e1', 
+                            borderRadius: 4 
+                        }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
-                    scales: { x: { grid: { display: false } }, y: { grid: { color: '#f1f5f9' } } }
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } 
+                    },
+                    scales: { 
+                        x: { 
+                            grid: { display: false },
+                            stacked: false // Agar bar Submitted dan Total Assignment berdiri terpisah di sebelah bar Rejected+Approved
+                        }, 
+                        y: { 
+                            grid: { color: '#f1f5f9' },
+                            stacked: false 
+                        } 
+                    }
                 }
             });
 
+            // Bagian Pie Chart tetap sama seperti sebelumnya
             const sumDraft = filteredData.reduce((acc, curr) => acc + Number(curr.DRAFT || 0), 0);
             const sumOpen = filteredData.reduce((acc, curr) => acc + Number(curr.OPEN || 0), 0);
             const sumSubmitted = filteredData.reduce((acc, curr) => acc + Number(curr.SUBMITTED || 0), 0);
-            const sumRejected = filteredData.reduce((acc, curr) => acc + Number(curr.REJECTED || 0), 0);
-            const sumApproved = filteredData.reduce((acc, curr) => acc + Number(curr.APPROVED || 0), 0);
 
             const ctxPie = document.getElementById('pieChart').getContext('2d');
             if (pieChartInstance) pieChartInstance.destroy();
