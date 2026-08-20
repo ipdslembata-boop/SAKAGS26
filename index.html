@@ -497,12 +497,14 @@
         }
 
         function renderStackedCharts() {
-            function processStackedData(isPml) {
+            // Fungsi untuk memproses data PML (Fokus ke Rejected & Approved)
+            function processPmlData() {
                 const map = {};
                 filteredData.forEach(item => {
-                    const key = isPml ? item.namaPml : item.namaPpl;
+                    const key = item.namaPml;
+                    if (!key) return;
                     if (!map[key]) {
-                        map[key] = {rejected: 0, approved: 0, totalSum: 0 };
+                        map[key] = { rejected: 0, approved: 0, totalSum: 0 };
                     }
                     
                     const r = Number(item.REJECTED || 0);
@@ -519,12 +521,41 @@
                     map[key].rejected = (map[key].rejected / t) * 100;
                     map[key].approved = (map[key].approved / t) * 100;
                 });
-
                 return map;
             }
 
-            const dataPml = processStackedData(true);
-            const dataPpl = processStackedData(false);
+            // Fungsi untuk memproses data PPL (Fokus ke Draft, Open, Submitted)
+            function processPplData() {
+                const map = {};
+                filteredData.forEach(item => {
+                    const key = item.namaPpl;
+                    if (!key) return;
+                    if (!map[key]) {
+                        map[key] = { draft: 0, open: 0, submitted: 0, totalSum: 0 };
+                    }
+                    
+                    const d = Number(item.DRAFT || 0);
+                    const o = Number(item.OPEN || 0);
+                    const s = Number(item.SUBMITTED || 0);
+                    const rowTotal = d + o + s;
+
+                    map[key].draft += d;
+                    map[key].open += o;
+                    map[key].submitted += s;
+                    map[key].totalSum += rowTotal;
+                });
+
+                Object.keys(map).forEach(key => {
+                    const t = map[key].totalSum || 1;
+                    map[key].draft = (map[key].draft / t) * 100;
+                    map[key].open = (map[key].open / t) * 100;
+                    map[key].submitted = (map[key].submitted / t) * 100;
+                });
+                return map;
+            }
+
+            const dataPml = processPmlData();
+            const dataPpl = processPplData();
 
             const pmlKeys = Object.keys(dataPml);
             const pplKeys = Object.keys(dataPpl);
@@ -532,14 +563,14 @@
             document.getElementById('pmlContainer').style.height = `${Math.max(400, pmlKeys.length * 30)}px`;
             document.getElementById('pplContainer').style.height = `${Math.max(400, pplKeys.length * 30)}px`;
 
-            const createConfig = (labels, dataMap) => ({
+            // Config khusus untuk PML (Rejected & Approved)
+            const pmlConfig = {
                 type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: pmlKeys,
                     datasets: [
-                        { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#22c55e' },
-                        { label: 'Open', data: labels.map(l => dataMap[l].open), backgroundColor: '#3b82f6' },
-                        { label: 'Draft', data: labels.map(l => dataMap[l].draft), backgroundColor: '#f59e0b' }
+                        { label: 'Approved', data: pmlKeys.map(l => dataPml[l].approved), backgroundColor: '#065f46' },
+                        { label: 'Rejected', data: pmlKeys.map(l => dataPml[l].rejected), backgroundColor: '#b91c1c' }
                     ]
                 },
                 options: {
@@ -552,13 +583,36 @@
                     },
                     plugins: { legend: { position: 'top' } }
                 }
-            });
+            };
+
+            // Config khusus untuk PPL (Submitted, Open, Draft)
+            const pplConfig = {
+                type: 'bar',
+                data: {
+                    labels: pplKeys,
+                    datasets: [
+                        { label: 'Submitted', data: pplKeys.map(l => dataPpl[l].submitted), backgroundColor: '#22c55e' },
+                        { label: 'Open', data: pplKeys.map(l => dataPpl[l].open), backgroundColor: '#3b82f6' },
+                        { label: 'Draft', data: pplKeys.map(l => dataPpl[l].draft), backgroundColor: '#f59e0b' }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { 
+                        x: { stacked: true, max: 100, ticks: { callback: v => v + '%' } }, 
+                        y: { stacked: true } 
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            };
 
             if (stackedPmlInstance) stackedPmlInstance.destroy();
-            stackedPmlInstance = new Chart(document.getElementById('stackedPmlChart'), createConfig(pmlKeys, dataPml));
+            stackedPmlInstance = new Chart(document.getElementById('stackedPmlChart'), pmlConfig);
 
             if (stackedPplInstance) stackedPplInstance.destroy();
-            stackedPplInstance = new Chart(document.getElementById('stackedPplChart'), createConfig(pplKeys, dataPpl));
+            stackedPplInstance = new Chart(document.getElementById('stackedPplChart'), pplConfig);
         }
 
         function downloadChart(canvasId, filename) {
@@ -566,7 +620,7 @@
             if (canvasId === 'barChart') chartInstance = barChartInstance;
             if (canvasId === 'pieChart') chartInstance = pieChartInstance;
             if (canvasId === 'stackedPmlChart') chartInstance = stackedPmlInstance;
-            if (canvasId === 'stackedPplChart') chartInstance = stackedPplInstance;
+            if (canvasId === 'stackedPplChart') chartInstance = stackedPplInstance; // Ubah ini jadi stackedPplInstance
 
             if (!chartInstance) {
                 alert('Chart belum siap atau tidak ditemukan!');
