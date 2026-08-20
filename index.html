@@ -108,9 +108,13 @@
                     <p class="text-xs font-medium text-slate-500">Submitted</p>
                     <h3 id="kpiSubmitted" class="text-2xl font-bold text-green-600 mt-1">0</h3>
                 </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-red-700 col-span-2 sm:col-span-1">
+                    <p class="text-xs font-medium text-slate-500">Rejected</p>
+                    <h3 id="kpiRejected" class="text-2xl font-bold text-emerald-800 mt-1">0</h3>
+                </div>
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 border-l-4 border-l-emerald-700 col-span-2 sm:col-span-1">
-                    <p class="text-xs font-medium text-slate-500">Completed</p>
-                    <h3 id="kpiCompleted" class="text-2xl font-bold text-emerald-800 mt-1">0</h3>
+                    <p class="text-xs font-medium text-slate-500">Approved</p>
+                    <h3 id="kpiApproved" class="text-2xl font-bold text-emerald-800 mt-1">0</h3>
                 </div>
             </section>
 
@@ -179,7 +183,8 @@
                                 <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('DRAFT')">Draft ↕</th>
                                 <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('OPEN')">Open ↕</th>
                                 <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('SUBMITTED')">Submitted ↕</th>
-                                <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('COMPLETED')">Completed ↕</th>
+                                <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('COMPLETED')">Rejected ↕</th>
+                                <th class="p-3 text-right cursor-pointer hover:bg-slate-100" onclick="sortTable('COMPLETED')">Approved ↕</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody" class="divide-y divide-slate-200"></tbody>
@@ -237,9 +242,10 @@
                     const kodeUnikPanel = `${item.KECAMATAN}${item.DESA}${item.SLS}`;
                     
                     const submitted = Number(item.SUBMITTED || 0);
-                    const completed = Number(item.COMPLETED || 0);
+                    const rejected = Number(item.REJECTED || 0);
+                    const approved = Number(item.APPROVED || 0);
                     const totalAssign = Number(item.TOTAL_ASSIGNMENT || 0);
-                    const progressScore = submitted + completed;
+                    const progressScore = submitted;
                     
                     let kategoriProgres = "Aman";
                     if (totalAssign > 0 && (progressScore / totalAssign) < 0.5) {
@@ -353,15 +359,17 @@
                 acc.draft += Number(curr.DRAFT || 0);
                 acc.open += Number(curr.OPEN || 0);
                 acc.submitted += Number(curr.SUBMITTED || 0);
-                acc.completed += Number(curr.COMPLETED || 0);
+                acc.rejected += Number(curr.REJECTED || 0);
+                acc.approved += Number(curr.APPROVED || 0);
                 return acc;
-            }, { total: 0, draft: 0, open: 0, submitted: 0, completed: 0 });
+            }, { total: 0, draft: 0, open: 0, submitted: 0, rejected: 0, approved: 0 });
 
             document.getElementById('kpiTotal').textContent = totals.total.toLocaleString();
             document.getElementById('kpiDraft').textContent = totals.draft.toLocaleString();
             document.getElementById('kpiOpen').textContent = totals.open.toLocaleString();
             document.getElementById('kpiSubmitted').textContent = totals.submitted.toLocaleString();
-            document.getElementById('kpiCompleted').textContent = totals.completed.toLocaleString();
+            document.getElementById('kpiRejected').textContent = totals.rejected.toLocaleString();
+            document.getElementById('kpiApproved').textContent = totals.approved.toLocaleString();
         }
 
         function updateTable() {
@@ -392,7 +400,8 @@
                     <td class="p-3 text-right text-amber-600">${row.DRAFT}</td>
                     <td class="p-3 text-right text-blue-600">${row.OPEN}</td>
                     <td class="p-3 text-right text-green-600 font-semibold">${row.SUBMITTED}</td>
-                    <td class="p-3 text-right text-emerald-800 font-semibold">${row.COMPLETED}</td>
+                    <td class="p-3 text-right text-emerald-800 font-semibold">${row.REJECTED}</td>
+                    <td class="p-3 text-right text-emerald-800 font-semibold">${row.APPROVED}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -422,15 +431,17 @@
             const kecMap = {};
             filteredData.forEach(item => {
                 if (!kecMap[item.namaKec]) {
-                    kecMap[item.namaKec] = { total: 0, completed: 0, submitted: 0 };
+                    kecMap[item.namaKec] = { total: 0, rejected: 0, approved: 0, submitted: 0 };
                 }
                 kecMap[item.namaKec].total += Number(item.TOTAL_ASSIGNMENT || 0);
-                kecMap[item.namaKec].completed += Number(item.COMPLETED || 0);
+                kecMap[item.namaKec].rejected += Number(item.REJECTED || 0);
+                kecMap[item.namaKec].approved += Number(item.APPROVED || 0);
                 kecMap[item.namaKec].submitted += Number(item.SUBMITTED || 0);
             });
 
             const labels = Object.keys(kecMap);
-            const dataCompleted = labels.map(k => kecMap[k].completed);
+            const dataRejected = labels.map(k => kecMap[k].rejected);
+            const dataApproved = labels.map(k => kecMap[k].approved);
             const dataSubmitted = labels.map(k => kecMap[k].submitted);
             const dataTotal = labels.map(k => kecMap[k].total);
 
@@ -442,7 +453,8 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Completed', data: dataCompleted, backgroundColor: '#065f46', borderRadius: 4 },
+                        { label: 'Rejected', data: dataRejected, backgroundColor: '#b91c1c', borderRadius: 4 },
+                        { label: 'Approved', data: dataApproved, backgroundColor: '#065f46', borderRadius: 4 },
                         { label: 'Submitted', data: dataSubmitted, backgroundColor: '#22c55e', borderRadius: 4 },
                         { label: 'Total Assignment', data: dataTotal, backgroundColor: '#cbd5e1', borderRadius: 4 }
                     ]
@@ -458,7 +470,8 @@
             const sumDraft = filteredData.reduce((acc, curr) => acc + Number(curr.DRAFT || 0), 0);
             const sumOpen = filteredData.reduce((acc, curr) => acc + Number(curr.OPEN || 0), 0);
             const sumSubmitted = filteredData.reduce((acc, curr) => acc + Number(curr.SUBMITTED || 0), 0);
-            const sumCompleted = filteredData.reduce((acc, curr) => acc + Number(curr.COMPLETED || 0), 0);
+            const sumRejected = filteredData.reduce((acc, curr) => acc + Number(curr.REJECTED || 0), 0);
+            const sumApproved = filteredData.reduce((acc, curr) => acc + Number(curr.APPROVED || 0), 0);
 
             const ctxPie = document.getElementById('pieChart').getContext('2d');
             if (pieChartInstance) pieChartInstance.destroy();
@@ -466,10 +479,10 @@
             pieChartInstance = new Chart(ctxPie, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Draft', 'Open', 'Submitted', 'Completed'],
+                    labels: ['Draft', 'Open', 'Submitted', 'Rejected', 'Approved'],
                     datasets: [{
-                        data: [sumDraft, sumOpen, sumSubmitted, sumCompleted],
-                        backgroundColor: ['#f59e0b', '#3b82f6', '#22c55e', '#065f46'],
+                        data: [sumDraft, sumOpen, sumSubmitted, sumRejected, sumApproved],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#22c55e', '#b91c1c','#065f46'],
                         borderWidth: 2,
                         borderColor: '#ffffff'
                     }]
@@ -489,28 +502,31 @@
                 filteredData.forEach(item => {
                     const key = isPml ? item.namaPml : item.namaPpl;
                     if (!map[key]) {
-                        map[key] = { draft: 0, open: 0, submitted: 0, completed: 0, totalSum: 0 };
+                        map[key] = { draft: 0, open: 0, submitted: 0, rejected: 0, approved: 0, totalSum: 0 };
                     }
                     
-                    const d = Number(item.DRAFT || 0);
-                    const o = Number(item.OPEN || 0);
-                    const s = Number(item.SUBMITTED || 0);
-                    const c = Number(item.COMPLETED || 0);
-                    const rowTotal = d + o + s + c;
+                    //const d = Number(item.DRAFT || 0);
+                    //const o = Number(item.OPEN || 0);
+                    //const s = Number(item.SUBMITTED || 0);
+                    const r = Number(item.REJECTED || 0);
+                    const a = Number(item.APPROVED || 0);
+                    const rowTotal = r + a;
 
-                    map[key].draft += d;
-                    map[key].open += o;
-                    map[key].submitted += s;
-                    map[key].completed += c;
+                    //map[key].draft += d;
+                    //map[key].open += o;
+                    //map[key].submitted += s;
+                    map[key].rejected += r;
+                    map[key].approved += a;
                     map[key].totalSum += rowTotal;
                 });
 
                 Object.keys(map).forEach(key => {
                     const t = map[key].totalSum || 1;
-                    map[key].draft = (map[key].draft / t) * 100;
-                    map[key].open = (map[key].open / t) * 100;
-                    map[key].submitted = (map[key].submitted / t) * 100;
-                    map[key].completed = (map[key].completed / t) * 100;
+                    //map[key].draft = (map[key].draft / t) * 100;
+                    //map[key].open = (map[key].open / t) * 100;
+                    //map[key].submitted = (map[key].submitted / t) * 100;
+                    map[key].rejected = (map[key].rejected / t) * 100;
+                    map[key].approved = (map[key].approved / t) * 100;
                 });
 
                 return map;
