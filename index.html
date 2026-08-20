@@ -479,10 +479,10 @@
             pieChartInstance = new Chart(ctxPie, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Draft', 'Open', 'Submitted', 'Rejected', 'Approved'],
+                    labels: ['Draft', 'Open', 'Submitted'],
                     datasets: [{
-                        data: [sumDraft, sumOpen, sumSubmitted, sumRejected, sumApproved],
-                        backgroundColor: ['#f59e0b', '#3b82f6', '#22c55e', '#b91c1c','#065f46'],
+                        data: [sumDraft, sumOpen, sumSubmitted],
+                        backgroundColor: ['#f59e0b', '#3b82f6', '#22c55e'],
                         borderWidth: 2,
                         borderColor: '#ffffff'
                     }]
@@ -502,19 +502,13 @@
                 filteredData.forEach(item => {
                     const key = isPml ? item.namaPml : item.namaPpl;
                     if (!map[key]) {
-                        map[key] = { draft: 0, open: 0, submitted: 0, rejected: 0, approved: 0, totalSum: 0 };
+                        map[key] = {rejected: 0, approved: 0, totalSum: 0 };
                     }
                     
-                    //const d = Number(item.DRAFT || 0);
-                    //const o = Number(item.OPEN || 0);
-                    //const s = Number(item.SUBMITTED || 0);
                     const r = Number(item.REJECTED || 0);
                     const a = Number(item.APPROVED || 0);
                     const rowTotal = r + a;
 
-                    //map[key].draft += d;
-                    //map[key].open += o;
-                    //map[key].submitted += s;
                     map[key].rejected += r;
                     map[key].approved += a;
                     map[key].totalSum += rowTotal;
@@ -522,9 +516,6 @@
 
                 Object.keys(map).forEach(key => {
                     const t = map[key].totalSum || 1;
-                    //map[key].draft = (map[key].draft / t) * 100;
-                    //map[key].open = (map[key].open / t) * 100;
-                    //map[key].submitted = (map[key].submitted / t) * 100;
                     map[key].rejected = (map[key].rejected / t) * 100;
                     map[key].approved = (map[key].approved / t) * 100;
                 });
@@ -546,7 +537,6 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: 'Completed', data: labels.map(l => dataMap[l].completed), backgroundColor: '#065f46' },
                         { label: 'Submitted', data: labels.map(l => dataMap[l].submitted), backgroundColor: '#22c55e' },
                         { label: 'Open', data: labels.map(l => dataMap[l].open), backgroundColor: '#3b82f6' },
                         { label: 'Draft', data: labels.map(l => dataMap[l].draft), backgroundColor: '#f59e0b' }
