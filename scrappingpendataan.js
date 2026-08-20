@@ -115,7 +115,8 @@
                 DRAFT: 0,
                 OPEN: 0,
                 "SUBMITTED BY PPL": 0,
-                "COMPLETED BY PML": 0
+                "REJECTED BY PML": 0,
+                "APPROVED BY PML": 0
             };
     
             region.statusBreakdown.forEach(item => {
@@ -150,7 +151,9 @@
     
                 SUBMITTED: status["SUBMITTED BY PPL"],
     
-                COMPLETED: status["COMPLETED BY PML"]
+                REJECTED: status["COMPLETED BY PML"],
+
+                APPROVED: status["APPROVED BY PML"]
     
             });
     
