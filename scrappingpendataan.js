@@ -151,7 +151,7 @@
     
                 SUBMITTED: status["SUBMITTED BY PPL"],
     
-                REJECTED: status["COMPLETED BY PML"],
+                REJECTED: status["REJECTED BY PML"],
 
                 APPROVED: status["APPROVED BY PML"]
     
