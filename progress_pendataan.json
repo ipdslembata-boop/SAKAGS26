@@ -13,7 +13,8 @@
     "DRAFT": 2,
     "OPEN": 0,
     "SUBMITTED": 8,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -29,7 +30,8 @@
     "DRAFT": 1,
     "OPEN": 0,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -45,7 +47,8 @@
     "DRAFT": 0,
     "OPEN": 10,
     "SUBMITTED": 0,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -61,7 +64,8 @@
     "DRAFT": 0,
     "OPEN": 4,
     "SUBMITTED": 3,
-    "COMPLETED": 0
+    "REJECTED": 3,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -77,7 +81,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 2,
-    "COMPLETED": 0
+    "REJECTED": 2,
+    "APPROVED": 6
   },
   {
     "PROVINSI": "53",
@@ -93,7 +98,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -109,7 +115,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 6,
-    "COMPLETED": 0
+    "REJECTED": 3,
+    "APPROVED": 1
   },
   {
     "PROVINSI": "53",
@@ -125,7 +132,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -141,7 +149,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 0,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 10
   },
   {
     "PROVINSI": "53",
@@ -157,7 +166,8 @@
     "DRAFT": 2,
     "OPEN": 0,
     "SUBMITTED": 8,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -173,7 +183,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -189,7 +200,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 2,
-    "COMPLETED": 0
+    "REJECTED": 8,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -205,7 +217,8 @@
     "DRAFT": 0,
     "OPEN": 3,
     "SUBMITTED": 7,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -221,7 +234,8 @@
     "DRAFT": 0,
     "OPEN": 5,
     "SUBMITTED": 5,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -237,7 +251,8 @@
     "DRAFT": 0,
     "OPEN": 8,
     "SUBMITTED": 2,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -253,7 +268,8 @@
     "DRAFT": 0,
     "OPEN": 4,
     "SUBMITTED": 6,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -269,7 +285,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -285,7 +302,8 @@
     "DRAFT": 2,
     "OPEN": 0,
     "SUBMITTED": 8,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -301,7 +319,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -317,7 +336,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 4,
-    "COMPLETED": 0
+    "REJECTED": 1,
+    "APPROVED": 5
   },
   {
     "PROVINSI": "53",
@@ -333,7 +353,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -349,7 +370,8 @@
     "DRAFT": 0,
     "OPEN": 4,
     "SUBMITTED": 6,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -365,7 +387,8 @@
     "DRAFT": 0,
     "OPEN": 5,
     "SUBMITTED": 5,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -381,7 +404,8 @@
     "DRAFT": 0,
     "OPEN": 9,
     "SUBMITTED": 1,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -397,7 +421,8 @@
     "DRAFT": 1,
     "OPEN": 0,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -413,7 +438,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -429,7 +455,8 @@
     "DRAFT": 1,
     "OPEN": 0,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -445,7 +472,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -461,7 +489,8 @@
     "DRAFT": 1,
     "OPEN": 0,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -477,7 +506,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -493,7 +523,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -509,7 +540,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 8,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -525,7 +557,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -541,7 +574,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -557,7 +591,8 @@
     "DRAFT": 3,
     "OPEN": 0,
     "SUBMITTED": 7,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -573,7 +608,8 @@
     "DRAFT": 0,
     "OPEN": 8,
     "SUBMITTED": 0,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -589,7 +625,8 @@
     "DRAFT": 8,
     "OPEN": 1,
     "SUBMITTED": 0,
-    "COMPLETED": 0
+    "REJECTED": 1,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -605,7 +642,8 @@
     "DRAFT": 7,
     "OPEN": 3,
     "SUBMITTED": 0,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -621,7 +659,8 @@
     "DRAFT": 0,
     "OPEN": 10,
     "SUBMITTED": 0,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -637,7 +676,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -653,7 +693,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -669,7 +710,8 @@
     "DRAFT": 0,
     "OPEN": 3,
     "SUBMITTED": 7,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -685,7 +727,8 @@
     "DRAFT": 0,
     "OPEN": 1,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -701,7 +744,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -717,7 +761,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -733,7 +778,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 9,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -749,7 +795,8 @@
     "DRAFT": 0,
     "OPEN": 0,
     "SUBMITTED": 10,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   },
   {
     "PROVINSI": "53",
@@ -765,6 +812,7 @@
     "DRAFT": 2,
     "OPEN": 0,
     "SUBMITTED": 6,
-    "COMPLETED": 0
+    "REJECTED": 0,
+    "APPROVED": 0
   }
 ]
