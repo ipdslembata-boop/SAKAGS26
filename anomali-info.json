@@ -5,19 +5,19 @@
       "penjelasan_detail": "Terdapat Ketidakwajaran Tahun Lulus Pada Pendidikan Terakhir.",
       "solusi_perbaikan": "konfirmasi"
     },
-    "AAK208": {
+    "SAK2": {
       "tingkat_keparahan": "sedang",
       "penjelasan_detail": "Memiliki Alzheimer tapi tidak mengalami gangguan intelektual.",
       "solusi_perbaikan": "konfirmasi"
     }
   },
-  "neraca": {
-    "Neraca_1": {
+  "Anomali Pusat": {
+    "A1": {
       "tingkat_keparahan": "sedang",
       "penjelasan_detail": "memiliki produk madu namun memiliki kode kbli dengan 3 digit pertama adalah 014",
       "solusi_perbaikan": "konfirmasi"
     },
-    "Neraca_2": {
+    "A2": {
       "tingkat_keparahan": "sedang",
       "penjelasan_detail": "memiliki produk sendiri berupa sensor kayu namun berkategori A",
       "solusi_perbaikan": "konfirmasi"
