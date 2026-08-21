@@ -39,10 +39,10 @@
         <!-- FILTER & RESUME -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div class="bg-[#bfdbfe] border-2 border-white rounded-2xl p-3 shadow-sm flex flex-col gap-2 md:col-span-2">
-                <div class="text-xs font-bold text-slate-700">Filter Data</div>
+                <div class="text-xs font-bold text-slate-700">Filter Petugas</div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <select id="filterKecamatan" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-xl p-2 outline-none shadow-xs"><option value="">Semua Kecamatan</option></select>
-                    <select id="filterDesa" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-xl p-2 outline-none shadow-xs"><option value="">Semua Desa</option></select>
+                    <select id="filterPPL" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-xl p-2 outline-none shadow-xs"><option value="">Semua PPL</option></select>
+                    <select id="filterPML" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-xl p-2 outline-none shadow-xs"><option value="">Semua PML</option></select>
                 </div>
                 <input type="text" id="globalSearch" oninput="applyFilters()" placeholder="Cari data (Global Search)..." class="text-xs bg-white border border-slate-300 rounded-xl p-2 outline-none shadow-xs">
             </div>
@@ -117,6 +117,7 @@
         let currentCategory = 'Anomali Daerah';
         let currentSheetName = '';
         let anomalyExplanationsData = {};
+        let petugasMap = {};
 
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', (e) => {
@@ -131,13 +132,24 @@
             currentCategory = cat;
             const explanationBox = document.getElementById('anomalyExplanation');
 
+            // Load data petugas & penjelasan jika belum ada
+            if (Object.keys(petugasMap).length === 0) {
+                try {
+                    const resPtgs = await fetch('database_ptgs.json');
+                    const ptgsList = await resPtgs.json();
+                    ptgsList.forEach(p => {
+                        petugasMap[String(p.KODE_SLS).trim()] = { PPL: p.PPL, PML: p.PML };
+                    });
+                } catch (e) {
+                    console.error("Gagal memuat database_ptgs.json:", e);
+                }
+            }
+
             if (Object.keys(anomalyExplanationsData).length === 0) {
                 try {
                     const response = await fetch('anomali-info.json');
                     anomalyExplanationsData = await response.json();
-                } catch (e) {
-                    console.error("Gagal memuat file JSON penjelasan:", e);
-                }
+                } catch (e) {}
             }
 
             const sheets = CONFIG[cat];
@@ -203,6 +215,15 @@
                 const res = await fetch(url);
                 const text = await res.text();
                 currentActiveData = parseCSV(text);
+                
+                // Gabungkan PPL & PML berdasarkan KODE_SLS
+                currentActiveData.forEach(row => {
+                    let slsKey = String(row.KODE_SLS || '').trim();
+                    let ptgs = petugasMap[slsKey] || { PPL: '-', PML: '-' };
+                    row.PPL = ptgs.PPL;
+                    row.PML = ptgs.PML;
+                });
+
                 filteredData = [...currentActiveData];
                 currentPage = 1;
                 renderAll();
@@ -217,24 +238,30 @@
             let lines = text.split("\n").filter(l => l.trim() !== "");
             if (lines.length === 0) return [];
             let headers = lines[0].split(",").map(h => h.trim().replace(/^"|"$/g, ''));
+            // Tambahkan kolom PPL dan PML secara otomatis jika belum ada di header CSV
+            if (!headers.includes('PPL')) headers.push('PPL');
+            if (!headers.includes('PML')) headers.push('PML');
+
             return lines.slice(1).map((line, index) => {
                 let row = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 let obj = { _rowIndex: index + 2 };
-                headers.forEach((h, i) => obj[h] = (row[i] || "").replace(/^"|"$/g, ''));
+                headers.forEach((h, i) => {
+                    if (h !== 'PPL' && h !== 'PML') {
+                        obj[h] = (row[i] || "").replace(/^"|"$/g, '');
+                    }
+                });
                 return obj;
             });
         }
 
         function applyFilters() {
-            const kec = document.getElementById('filterKecamatan').value;
-            const desa = document.getElementById('filterDesa').value;
+            const ppl = document.getElementById('filterPPL').value;
+            const pml = document.getElementById('filterPML').value;
             const search = document.getElementById('globalSearch').value.toLowerCase();
             
             filteredData = currentActiveData.filter(row => {
-                const rowKec = String(row.KEC || row.KECAMATAN || row.kecamatan || '');
-                const rowDesa = String(row.DESA || row.desa || '');
-                if (kec && rowKec !== kec) return false;
-                if (desa && rowDesa !== desa) return false;
+                if (ppl && row.PPL !== ppl) return false;
+                if (pml && row.PML !== pml) return false;
                 if (search && !Object.values(row).some(v => String(v).toLowerCase().includes(search))) return false;
                 return true;
             });
@@ -344,10 +371,10 @@
 
         function populateFilters(data) {
             if (!data || data.length === 0) return;
-            const kecs = [...new Set(data.map(d => d.KEC || d.KECAMATAN || d.kecamatan))].filter(Boolean);
-            const desas = [...new Set(data.map(d => d.DESA || d.desa))].filter(Boolean);
-            fillSelect('filterKecamatan', kecs, 'Semua Kecamatan');
-            fillSelect('filterDesa', desas, 'Semua Desa');
+            const ppls = [...new Set(data.map(d => d.PPL))].filter(Boolean).sort();
+            const pmls = [...new Set(data.map(d => d.PML))].filter(Boolean).sort();
+            fillSelect('filterPPL', ppls, 'Semua PPL');
+            fillSelect('filterPML', pmls, 'Semua PML');
         }
 
         function fillSelect(id, items, label) {
