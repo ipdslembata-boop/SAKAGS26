@@ -1,0 +1,186 @@
+{
+  "sosek": {
+    "AAK108": {
+      "tingkat_keparahan": "kritis",
+      "penjelasan_detail": "Memiliki stroke tapi tidak mengalami gangguan fisik dan gangguan bicara.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "AAK208": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Memiliki Alzheimer tapi tidak mengalami gangguan intelektual.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A1K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki AC, namun dinding berbahan selain tembok, plesteran, atau kayu.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A2K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki Lemari Es/ Kulkas, namun memiliki sumber penerangan bukan listrik.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A3K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki AC, namun memiliki sumber penerangan bukan listrik.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A4K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki komputer/laptop/tablet, namun memiliki sumber penerangan bukan listrik.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A5K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki dinding berbahan selain tembok, namun lantai berbahan marmer/granit.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A6K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki dinding berbahan selain tembok, plesteran, anyaman bambu/kawat, atau kayu/papan/gipsum/GRC/calciboard, namun memiliki lantai marmer/granit atau keramik.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A7K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki dinding berbahan tembok, namun lantai berbahan bambu atau lainnya.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A8K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki atap berbahan selain beton, genteng, seng, dan asbes, namun lantai berbahan marmer/granit.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A9K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki atap berbahan beton, namun lantai berbahan semen/bata merah, bambu, tanah, atau lainnya.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A10K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki mobil tetapi tidak memiliki fasilitas tempat buang air besar.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A11K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki dinding berbahan tembok, namun atap berbahan selain beton, genteng, seng, dan asbes.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A12K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki mobil, namun atap berbahan selain beton, genteng, seng, dan asbes.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A13K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki aset mobil, namun dinding berbahan selain tembok, plesteran, dan kayu/papan/gipsum/GRC/Calciboard.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A14K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga menggunakan sumber air minum utama sumur bor/pompa, namun sumber penerangan utama bukan listrik.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A15K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga dengan sumber penerangan utama bukan listrik, namun memiliki mobil.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A16K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki kloset leher angsa, tetapi tempat pembuangan akhir tinja adalah kolam/sawah/danau/laut, lubang tanah, pantai/tanah lapang/kebun, atau lainnya.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A17K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki kloset plengsengan baik dengan tutup maupun tanpa tutup atau cemplung, tetapi tempat akhir pembuangan tinjanya IPAL.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A18K08": {
+      "tingkat_keparahan": "rendah",
+      "penjelasan_detail": "Keluarga memiliki aset tanah/lahan di tempat lain dan/atau memiliki rumah/bangunan di tempat lain namun atap bangunan berbahan selain beton, genteng, seng, dan asbes.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A19K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki aset tanah/lahan di tempat lain dan/atau memiliki rumah/bangunan di tempat lain namun dinding berbahan selain tembok, plesteran, dan kayu/papan/gipsum/GRC/Calciboard.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A20K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki aset tanah/lahan di tempat lain dan/atau memiliki rumah/bangunan di tempat lain namun lantai berbahan selain marmer/granit, kramik, parket/vinil/karpet, ubin/tegel/teraso, atau kayu/papan.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A21K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki aset tanah/lahan di tempat lain dan/atau memiliki rumah/bangunan di tempat lain namun sumber penerangannya bukan listrik",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A22K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Bahan lantai berupa parket/vinil/permadani atau lainnya",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A23K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Bahan dinding adalah plesteran, anyaman bambu/kawat atau lainnya.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A24K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Bahan atap rumah terluas genteng atau beton atau lainnya.",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A25K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Air minum Leding untuk desa selain Kelurahan Lewoleba Barat, Kelurahn Lewoleba Selatan, Kelurahan Lewoleba Tengah, Kelurahan Lewoleba Timur, Kelurahan Lewoleba Utara, Kelurahan Selandoro, Desa Pada, dan Desa Waijarang",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "A26K08": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Sumber penerangan adalah listrik non-PLN atau bukan listrik.",
+      "solusi_perbaikan": "konfirmasi"
+    }
+  },
+  "neraca": {
+    "Neraca_1": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "memiliki produk madu namun memiliki kode kbli dengan 3 digit pertama adalah 014",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_2": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "memiliki produk sendiri berupa sensor kayu namun berkategori A",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_3": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Memiliki produk sendiri tapi berkategori B,C,D,E, atau F",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_4": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Layanan makan minum, namun berkategori I dan memiliki kode kbli dengan 2 digit pertama adalah 26",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_5": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Tidak memiliki produk sendiri, tidak memiliki layanan makan dan minum, namun berkategori G",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_6": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Keluarga memiliki Komputer/laptop/tablet, namun memiliki sumber penerangan bukan listrik",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_7": {
+      "tingkat_keparahan": "kritis",
+      "penjelasan_detail": "Terdapat kata membuat atau memproduksi pada kegiatan utama, namun berkategori C/d dan memiliki kode kbli 35302",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "Neraca_8": {
+      "tingkat_keparahan": "kritis",
+      "penjelasan_detail": "Memiliki kode kbli dengan 2 digit pertama adalah 12",
+      "solusi_perbaikan": "konfirmasi"
+    }
+  }
+}
