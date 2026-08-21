@@ -12,23 +12,18 @@
 
     <div class="w-full max-w-7xl bg-[#eff6ff] border-2 border-white rounded-2xl sm:rounded-3xl shadow-xl p-3 sm:p-6 flex flex-col gap-4">
         
-        <!-- HEADER & NAVIGASI -->
+        <!-- HEADER -->
         <header class="bg-[#bfdbfe] border-2 border-white rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
             <div class="flex flex-wrap justify-between items-center gap-2">
                 <div class="flex items-center gap-2">
-                    <div class="flex items-center gap-1">
-                        <span class="w-5 h-5 bg-blue-600 rounded-sm inline-block"></span>
-                        <span class="w-5 h-5 bg-emerald-500 rounded-sm inline-block"></span>
-                    </div>
+                    <span class="w-5 h-5 bg-blue-600 rounded-sm inline-block"></span>
                     <span class="text-[10px] sm:text-xs font-bold tracking-wider text-slate-700">SE2026</span>
                 </div>
-                
                 <h1 class="text-base sm:text-xl font-bold text-slate-700 tracking-wide text-center">Monitoring Anomali</h1>
-                
                 <div id="lastUpdate" class="text-[9px] sm:text-[10px] bg-white/80 border border-slate-200 px-2 py-0.5 rounded-full text-slate-500">Update terakhir</div>
             </div>
 
-            <!-- MENU & NAVIGASI ANTAR DASHBOARD -->
+            <!-- NAVIGASI -->
             <div class="flex flex-wrap justify-between items-center gap-2 pt-2 border-t border-white/60">
                 <div class="flex items-center gap-1.5">
                     <a href="index.html" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-200 hover:bg-slate-300 text-slate-700 transition-colors">📊 Progres</a>
@@ -41,9 +36,8 @@
             </div>
         </header>
 
-        <!-- KOTAK FILTER & RESUME KPI (SATU BARIS / KOMPAK) -->
+        <!-- FILTER & RESUME -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-            <!-- Filter Gabungan -->
             <div class="bg-[#bfdbfe] border-2 border-white rounded-2xl p-3 shadow-sm flex flex-col gap-2 md:col-span-2">
                 <div class="text-xs font-bold text-slate-700">Filter Data</div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -53,7 +47,6 @@
                 <input type="text" id="globalSearch" oninput="applyFilters()" placeholder="Cari data (Global Search)..." class="text-xs bg-white border border-slate-300 rounded-xl p-2 outline-none shadow-xs">
             </div>
 
-            <!-- Resume KPI Total Anomali -->
             <div class="bg-[#bfdbfe] border-2 border-white rounded-2xl p-3 shadow-sm flex flex-col justify-between md:col-span-2">
                 <div class="text-xs font-bold text-slate-700 text-center">Ringkasan Anomali</div>
                 <div class="grid grid-cols-3 gap-2 text-center">
@@ -73,18 +66,17 @@
             </div>
         </div>
 
-        <!-- UTAMA: TABEL & PENJELASAN ANOMALI -->
+        <!-- UTAMA -->
         <main class="w-full">
             <div class="bg-gradient-to-br from-[#d1fae5] via-[#a7f3d0] to-[#bfdbfe] border-2 border-white rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-sm flex flex-col gap-4">
                 
                 <div class="bg-white/90 border border-white rounded-2xl shadow-xs overflow-hidden flex flex-col">
-                    <!-- Bar Judul Tabel dengan Tab Sheet Dinamis -->
                     <div class="bg-[#93c5fd] text-white text-xs font-bold py-2.5 px-4 flex flex-wrap justify-between items-center gap-2 tracking-wider">
-                        <span>Tabel Anomali</span>
+                        <span>Tabel Anomali & Tindak Lanjut</span>
                         <div id="sheetTabs" class="flex flex-wrap gap-1.5"></div>
                     </div>
 
-                    <!-- KOTAK PENJELASAN ANOMALI DI DALAM AREA TABEL (BAGIAN ATAS) -->
+                    <!-- PENJELASAN ANOMALI -->
                     <div class="p-3 bg-slate-50/80 border-b border-slate-200">
                         <div class="text-[11px] font-bold text-slate-700 mb-1">Informasi Anomali & Solusi:</div>
                         <div id="anomalyExplanation" class="text-[11px] text-slate-600 bg-white p-2.5 rounded-xl border border-slate-200">
@@ -92,7 +84,8 @@
                         </div>
                     </div>
 
-                    <div class="p-3 flex justify-end">
+                    <div class="p-3 flex justify-between items-center">
+                        <div id="syncStatus" class="text-[11px] text-slate-500 italic">Ketik di kolom TINDAK_LANJUT untuk menyimpan otomatis.</div>
                         <button onclick="exportToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg transition-colors shadow-xs">Unduh Laporan (CSV)</button>
                     </div>
 
@@ -110,6 +103,8 @@
     </div>
 
     <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkAIAut278sC2SSAlrF4_soZOdfKchQTqpPMeVuDtkdZM3jmwUjlSQpLj-FjjkSuFN/exec";
+
         const CONFIG = {
             'Anomali Daerah': {
                 'SAK1': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHgs6W7kqvf8CZU0w_AxOkWRzdLHChWiAkC1l7MB6L1HR0zrQUJh3itfiT9JTclNZwp0dqYiNnItUS/pub?output=csv',
@@ -222,9 +217,9 @@
             let lines = text.split("\n").filter(l => l.trim() !== "");
             if (lines.length === 0) return [];
             let headers = lines[0].split(",").map(h => h.trim().replace(/^"|"$/g, ''));
-            return lines.slice(1).map(line => {
+            return lines.slice(1).map((line, index) => {
                 let row = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                let obj = {};
+                let obj = { _rowIndex: index + 2 };
                 headers.forEach((h, i) => obj[h] = (row[i] || "").replace(/^"|"$/g, ''));
                 return obj;
             });
@@ -265,14 +260,24 @@
                 return;
             }
 
-            const keys = Object.keys(filteredData[0]); 
+            const keys = Object.keys(filteredData[0]).filter(k => k !== '_rowIndex');
             
             document.getElementById('tableHeader').innerHTML = `<tr>${keys.map(k => `<th class="p-3 uppercase text-[11px] whitespace-nowrap">${k.replace(/_/g, ' ')}</th>`).join('')}</tr>`;
             
             tbody.innerHTML = pageData.map(row => {
                 return `<tr class="hover:bg-slate-50 transition-colors">
                     ${keys.map(k => {
-                        let cellValue = row[k] || '-';
+                        let cellValue = row[k] || '';
+                        
+                        if (k === 'TINDAK_LANJUT') {
+                            return `<td class="p-2 whitespace-nowrap">
+                                <input type="text" value="${cellValue}" 
+                                    onchange="saveTindakLanjut(${row._rowIndex}, this.value)" 
+                                    placeholder="Ketik tindak lanjut..." 
+                                    class="w-44 text-[11px] bg-white border border-slate-300 rounded-lg p-1.5 outline-none focus:border-blue-500 shadow-xs">
+                            </td>`;
+                        }
+
                         if (k.toUpperCase() === 'LINK') {
                             return `<td class="p-3 text-[11px] whitespace-nowrap">
                                 <a href="${cellValue}" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-3 py-1.5 rounded-lg text-[10px] shadow-sm transition-colors text-center">Buka Link</a>
@@ -285,10 +290,43 @@
             
             const totalPages = Math.ceil(filteredData.length / rowsPerPage) || 1;
             document.getElementById('pagination').innerHTML = `
-                <button onclick="changePage(-1)" class="px-3 py-1 bg-white border rounded">Prev</button>
+                <button onclick="changePage(-1)" class="px-3 py-1 bg-white border rounded shadow-xs cursor-pointer">Prev</button>
                 <span class="px-3 py-1">Hal ${currentPage} / ${totalPages}</span>
-                <button onclick="changePage(1)" class="px-3 py-1 bg-white border rounded">Next</button>
+                <button onclick="changePage(1)" class="px-3 py-1 bg-white border rounded shadow-xs cursor-pointer">Next</button>
             `;
+        }
+
+        async function saveTindakLanjut(rowIndex, value) {
+            const statusEl = document.getElementById('syncStatus');
+            statusEl.textContent = "Menyimpan perubahan ke Google Sheets...";
+            statusEl.className = "text-[11px] text-amber-600 font-semibold italic";
+
+            try {
+                const formData = new URLSearchParams();
+                formData.append('sheet', currentSheetName);
+                formData.append('row', rowIndex);
+                formData.append('value', value);
+
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.result === 'success') {
+                    statusEl.textContent = "Perubahan berhasil tersimpan!";
+                    statusEl.className = "text-[11px] text-emerald-600 font-semibold italic";
+                    const target = currentActiveData.find(d => d._rowIndex === rowIndex);
+                    if (target) target.TINDAK_LANJUT = value;
+                    renderKPI(filteredData);
+                } else {
+                    throw new Error(result.message || 'Gagal menyimpan');
+                }
+            } catch (err) {
+                console.error(err);
+                statusEl.textContent = "Gagal menyimpan! Periksa koneksi atau URL Apps Script.";
+                statusEl.className = "text-[11px] text-red-600 font-semibold italic";
+            }
         }
 
         function changePage(dir) {
@@ -298,7 +336,7 @@
         }
 
         function renderKPI(data) {
-            const resolved = data.filter(d => d.assignment_id === "TRUE" || d.status === "TRUE").length;
+            const resolved = data.filter(d => d.TINDAK_LANJUT && d.TINDAK_LANJUT.trim() !== "").length;
             document.getElementById('kpiTotal').textContent = data.length;
             document.getElementById('kpiResolved').textContent = resolved;
             document.getElementById('kpiOpen').textContent = data.length - resolved;
@@ -322,7 +360,7 @@
 
         function exportToCSV() {
             if (!filteredData.length) return alert('Tidak ada data');
-            const keys = Object.keys(filteredData[0]);
+            const keys = Object.keys(filteredData[0]).filter(k => k !== '_rowIndex');
             let csv = keys.join(',') + '\n';
             filteredData.forEach(d => {
                 csv += keys.map(k => `"${d[k] !== undefined ? d[k] : ''}"`).join(',') + '\n';
