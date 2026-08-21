@@ -33,10 +33,8 @@
             <div class="flex flex-col items-end gap-2">
                 <div id="lastUpdate" class="text-[10px] bg-white/80 border border-slate-200 px-3 py-1 rounded-full text-slate-500 shadow-xs">ket. waktu update terakhir</div>
                 <nav class="flex flex-wrap gap-3 text-xs font-semibold text-blue-900">
-                    <button data-category="sosek" class="menu-item hover:underline cursor-pointer font-bold">Sosek</button>
-                    <button data-category="umum" class="menu-item hover:underline cursor-pointer">Umum</button>
-                    <button data-category="neraca" class="menu-item hover:underline cursor-pointer">Neraca</button>
-                    <button data-category="kbli" class="menu-item hover:underline cursor-pointer">KBLI</button>
+                    <button data-category="Anomali Daerah" class="menu-item hover:underline cursor-pointer font-bold">Anomali Daerah</button>
+                    <button data-category="Anomali Pusat" class="menu-item hover:underline cursor-pointer">Anomali Pusat</button>
                 </nav>
             </div>
         </header>
@@ -94,39 +92,11 @@
 
     <script>
         const CONFIG = {
-            'sosek': {
-                'AAK1': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?output=csv',
-                'AAK2': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=40991038&output=csv',
-                'A1K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=0&output=csv',
-                'A2K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1278497720&output=csv',
-                'A3K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=905543735&output=csv',
-                'A4K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=331161133&output=csv',
-                'A5K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=483166011&output=csv',
-                'A6K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1281114709&output=csv',
-                'A7K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=59741897&output=csv',
-                'A8K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=217183281&output=csv',
-                'A9K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1231698653&output=csv',
-                'A10K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=282670355&output=csv',
-                'A11K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=726025494&output=csv',
-                'A12K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=283377083&output=csv',
-                'A13K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1422883851&output=csv',
-                'A14K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=824483319&output=csv',
-                'A15K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1456979801&output=csv',
-                'A16K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=2076867861&output=csv',
-                'A17K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=149485459&output=csv',
-                'A18K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=2004015132&output=csv',
-                'A19K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1806116124&output=csv',
-                'A20K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1275549894&output=csv',
-                'A21K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=868152512&output=csv',
-                'A22K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=438449094&output=csv',
-                'A23K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=276129334&output=csv',
-                'A24K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=1022525145&output=csv',
-                'A25K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=596921796&output=csv',
-                'A26K08': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=728390883&output=csv'
+            'Anomali Daerah': {
+                'SAK1': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?output=csv',
+                'SAK2': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQPCPkjfv9nGufuWbhqmGOcN2B5lz1dEtW4zEWqA_LEAB2lajcQuS92jwmLNkuU7MBT73ZUNcShE436/pub?gid=40991038&output=csv'
             },
-            'umum': {},
-            'neraca': {},
-            'kbli': {}
+            'Anomali Pusat': {}
         };
 
         let currentActiveData = [], filteredData = [], currentPage = 1, rowsPerPage = 50;
