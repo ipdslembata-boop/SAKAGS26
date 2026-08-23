@@ -9,6 +9,11 @@
       "tingkat_keparahan": "kritis",
       "penjelasan_detail": "Pekerjaan di Bidang Pertanian tetapi tempat kerja selain kode 4",
       "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK3": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Terdapat ART yang bekerja dengan bahan atau peralatan yang disediakan oleh satu perusahaan/orang/perantara",
+      "solusi_perbaikan": "konfirmasi"
     }
   },
   "Anomali Pusat": {
