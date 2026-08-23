@@ -1,13 +1,13 @@
 {
   "Anomali Daerah": {
     "SAK1": {
-      "tingkat_keparahan": "kritis",
+      "tingkat_keparahan": "sedang",
       "penjelasan_detail": "Terdapat Ketidakwajaran Tahun Lulus Pada Pendidikan Terakhir.",
       "solusi_perbaikan": "konfirmasi"
     },
     "SAK2": {
-      "tingkat_keparahan": "sedang",
-      "penjelasan_detail": "Memiliki Alzheimer tapi tidak mengalami gangguan intelektual.",
+      "tingkat_keparahan": "kritis",
+      "penjelasan_detail": "Pekerjaan di Bidang Pertanian tetapi tempat kerja selain kode 4",
       "solusi_perbaikan": "konfirmasi"
     }
   },
