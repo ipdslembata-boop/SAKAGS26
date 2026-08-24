@@ -85,9 +85,9 @@
       "penjelasan_detail": "sebagian besar dan seluruhnya di konsumsi kelurga tapi laba uang > dari laba barang.",
       "solusi_perbaikan": "konfirmasi"
     },
-    "SAK": {
+    "SAK18": {
       "tingkat_keparahan": "sedang",
-      "penjelasan_detail": "dalam ruta terdapat ART dengan status sebagai pekerja keluarga (7.3 Ya atau 10.5A kode 3) tapi ART lain tidak ada 10.5C yang berkode 2.",
+      "penjelasan_detail": "LABA_BARANG DAN LABA_UANG TERLAU SANGAT KECIL",
       "solusi_perbaikan": "konfirmasi"
     },
     "SAK": {
