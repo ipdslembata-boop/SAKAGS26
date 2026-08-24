@@ -57,7 +57,7 @@
     },
     "SAK12": {
       "tingkat_keparahan": "sedang",
-      "penjelasan_detail": "konsistensi antara tahun memulai pekerjaan saat ini dengan tahun kerja setelah lulus pendidikan tinggi (21.3A tidak tapi 12.1 =! 21.1)",
+      "penjelasan_detail": "Tahun kerja setelah lulus pendidikan tinggi tidak sama dengan Tahun kerja saat ini maka kemungkinan besar ada pengalaman kerja (21.3A = 1. YA).",
       "solusi_perbaikan": "konfirmasi"
     },
     "SAK13": {
