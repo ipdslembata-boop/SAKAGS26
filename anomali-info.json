@@ -90,14 +90,14 @@
       "penjelasan_detail": "LABA_BARANG DAN LABA_UANG TERLAU SANGAT KECIL",
       "solusi_perbaikan": "konfirmasi"
     },
-    "SAK": {
+    "SAK19": {
       "tingkat_keparahan": "sedang",
-      "penjelasan_detail": "dalam ruta terdapat ART dengan status sebagai pekerja keluarga (7.3 Ya atau 10.5A kode 3) tapi ART lain tidak ada 10.5C yang berkode 2.",
+      "penjelasan_detail": "CEK JAM KERJA UTAMA BIASANYA DENGAN JAM KERJA TAMBAHAN UTAMA BIASANYA",
       "solusi_perbaikan": "konfirmasi"
     },
-    "SAK": {
+    "SAK20": {
       "tingkat_keparahan": "sedang",
-      "penjelasan_detail": "dalam ruta terdapat ART dengan status sebagai pekerja keluarga (7.3 Ya atau 10.5A kode 3) tapi ART lain tidak ada 10.5C yang berkode 2.",
+      "penjelasan_detail": "CEK RINCIAN 11.4",
       "solusi_perbaikan": "konfirmasi"
     }
   },
