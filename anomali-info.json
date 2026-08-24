@@ -14,6 +14,41 @@
       "tingkat_keparahan": "sedang",
       "penjelasan_detail": "Terdapat ART yang bekerja dengan bahan atau peralatan yang disediakan oleh satu perusahaan/orang/perantara",
       "solusi_perbaikan": "konfirmasi"
+    },
+     "SAK4": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "cek pembukuan lengkap dan untuk keperluan perpajakan (16.5 kode 1,2)",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK5": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Cek membayar jaminan sosial sendiri (14.2. selain a, b-e berkode 1 dan statusnya selain buruh)",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK6": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Konfirmasi asal pedapatan dan asal konsumen (15.1 selain kode 2 atau 15.2 selain kode 3 dan 4)",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK7": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "tempat kerja dengan kode 10 atau lainnya (11.3 yang berkode 10)",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK8": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Alasan utama sementara tidak bekerja tetapi masuk kode lainnya (8.2 yang berkode 13)",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK9": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "Status sebagai pekerja keluarga iya tetapi rincian 10.5A tidak terisi 3 (7.3 iya, tapi 10.5A selain kode 3)",
+      "solusi_perbaikan": "konfirmasi"
+    },
+    "SAK10": {
+      "tingkat_keparahan": "sedang",
+      "penjelasan_detail": "dalam ruta terdapat ART dengan status sebagai pekerja keluarga (7.3 Ya atau 10.5A kode 3) tapi ART lain tidak ada 10.5C yang berkode 2.",
+      "solusi_perbaikan": "konfirmasi"
     }
   },
   "Anomali Pusat": {
