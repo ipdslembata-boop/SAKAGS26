@@ -254,7 +254,7 @@
                     const rejected = Number(item.REJECTED || 0);
                     const approved = Number(item.APPROVED || 0);
                     const totalAssign = Number(item.TOTAL_ASSIGNMENT || 0);
-                    const progressScore = submitted;
+                    const progressScore = submitted + rejected + approved;
                     
                     let kategoriProgres = "Aman";
                     if (totalAssign > 0 && (progressScore / totalAssign) < 0.5) {
